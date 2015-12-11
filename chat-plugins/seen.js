@@ -46,7 +46,7 @@ exports.commands = {
                 target = Users.getExact(target) ? Users.getExact(target).name : target;
                 if (!toId(target) || toId(target) === user.userid) target = user.name;
  
-                let seen = getLastSeen(target);
+                var seen = getLastSeen(target);
                 if (!seen) return this.sendReplyBox(target + ' has <font color = "red">never</font> been seen online.');
                 if (Users.getExact(target) && Users.getExact(target).connected) return this.sendReplyBox(target + ' is currently <font color = "green">online</font>. This user has stayed online for ' + seen + '.');
                 return this.sendReplyBox(target + ' was last seen ' + seen + ' ago.');
