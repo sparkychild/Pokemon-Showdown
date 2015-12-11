@@ -1,8 +1,7 @@
-"use strict";
 const fs = require('fs');
 const FILE_NAME = "config/lastseen.json";
  
-let seen;
+var seen;
 try {
         seen = JSON.parse(fs.readFileSync(FILE_NAME));
 } catch (err) {
@@ -25,13 +24,13 @@ function getLastSeen(user) {
         user = toId(user);
         if (!seen[user]) return false;
  
-        let rawDate = Date.now() - Number(seen[user]);
-        let seconds = Math.floor(rawDate / 1000);
-        let mins = Math.floor(seconds / 60);
-        let hours = Math.floor(mins / 60);
-        let days = Math.floor(hours / 24);
+        var rawDate = Date.now() - Number(seen[user]);
+        var seconds = Math.floor(rawDate / 1000);
+        var mins = Math.floor(seconds / 60);
+        var hours = Math.floor(mins / 60);
+        var days = Math.floor(hours / 24);
  
-        let total = [];
+        var total = [];
         if (pluralFormat(days, 'day')) total.push(pluralFormat(days, 'day'));
         if (pluralFormat(hours % 24, 'hour')) total.push(pluralFormat(hours % 24, 'hour'));
         if (pluralFormat(mins % 60, 'minute')) total.push(pluralFormat(mins % 60, 'minute'));
