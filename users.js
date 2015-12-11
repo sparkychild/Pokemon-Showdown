@@ -678,6 +678,7 @@ User = (function () {
 		return this.can('promote', {group:sourceGroup}) && this.can('promote', {group:targetGroup});
 	};
 	User.prototype.resetName = function () {
+		require('./chat-plugins/seen.js').writeLastSeen(this.userid);
 		var name = 'Guest ' + this.guestNum;
 		var userid = toId(name);
 		if (this.userid === userid) return;
@@ -1194,6 +1195,7 @@ User = (function () {
 		}
 	};
 	User.prototype.onDisconnect = function (connection) {
+		if (this.named) require('./chat-plugins/seen.js').writeLastSeen(this.userid);
 		for (var i = 0; i < this.connections.length; i++) {
 			if (this.connections[i] === connection) {
 				// console.log('DISCONNECT: ' + this.userid);
@@ -1228,6 +1230,7 @@ User = (function () {
 	};
 	User.prototype.disconnectAll = function () {
 		// Disconnects a user from the server
+		if (this.named) require('./chat-plugins/seen.js').writeLastSeen(this.userid);
 		this.clearChatQueue();
 		var connection = null;
 		this.markInactive();

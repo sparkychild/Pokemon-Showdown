@@ -757,6 +757,11 @@ var GlobalRoom = (function () {
 		return user;
 	};
 	GlobalRoom.prototype.onRename = function (user, oldid, joining) {
+		var seen = require('./chat-plugins/seen.js');
+		if (user.named && toId(oldid) !== toId(user)) {
+			seen.writeLastSeen(user.userid);
+			seen.writeLastSeen(oldid);
+		}
 		delete this.users[oldid];
 		this.users[user.userid] = user;
 		return user;
