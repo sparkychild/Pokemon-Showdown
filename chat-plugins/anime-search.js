@@ -40,7 +40,7 @@ function search(query) {
 				if (!firstMatch && !exactMatch) return reject('Anime results for "' + query + '" were not found...');
 				var info = data.search[exactMatch || firstMatch];
 				animeCache.queries[formattedQuery] = info.link;
-				fs.writeFileSync(FILE, JSON.stringify(animeCache, null, 1));
+				fs.writeFileSync(FILE_NAME, JSON.stringify(animeCache, null, 1));
 				return resolve(info.link);
 
 			})
@@ -67,7 +67,7 @@ function search(query) {
 							data.synopsis.split('\n')[0] +
 						'</details></div></div>';
 					animeCache[name] = info;
-					fs.writeFileSync(FILE, JSON.stringify(animeCache, null, 1));
+					fs.writeFileSync(FILE_NAME, JSON.stringify(animeCache, null, 1));
 					resolve(info);
 				});
 			});
