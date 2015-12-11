@@ -19,6 +19,7 @@ function writeLastSeen(user) {
         seen[toId(user)] = Date.now();
         fs.writeFileSync(FILE_NAME, JSON.stringify(seen));
 }
+exports.writeLastSeen = writeLastSeen;
  
 function getLastSeen(user) {
         user = toId(user);
