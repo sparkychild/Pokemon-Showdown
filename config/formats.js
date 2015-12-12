@@ -355,7 +355,7 @@ exports.Formats = [
 		requirePentagon: true,
 		onValidateTeam: function (team) {
 			var problems = [];
-			for (let i = 0; i < team.length; i++) {
+			for (var i = 0; i < team.length; i++) {
 				var template = this.getTemplate(team[i].species);
 				if (template.color !== 'Red' && template.color !== 'Green' && template.color !== 'White') {
 					problems.push(template.species);
