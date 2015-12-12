@@ -425,8 +425,8 @@ exports.Formats = [
 			const level = set.level;
 			var problems;
 			while (template.evos.length) {
-				let evos = template.evos;
-				for (let i = 0; i < evos.length; i++) {
+				var evos = template.evos;
+				for (var i = 0; i < evos.length; i++) {
 					template = Tools.getTemplate(evos[i]);
 					set.species = template.species;
 					set.ability = template.abilities[0];
