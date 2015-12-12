@@ -2,7 +2,7 @@
 
 exports.BattleScripts = {
 	init: function () {
-		for (let i in this.data.Pokedex) {
+		for (var i in this.data.Pokedex) {
 			if (Object.values(this.data.Pokedex[i].baseStats).sum() <= 350) {
 				this.modData('Pokedex', i).baseStats['hp'] = this.data.Pokedex[i].baseStats['hp'] * 2;
 				this.modData('Pokedex', i).baseStats['atk'] = this.data.Pokedex[i].baseStats['atk'] * 2;
