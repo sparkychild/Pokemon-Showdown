@@ -429,56 +429,6 @@ exports.Formats = [
 			}
 		}
 	},
-	{
-		name: "LC Extended",
-		desc: [
-			"LC but with Pok&eacute;mon being able to learn all moves from their evolutions.",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3557568/\">LC Extended</a>"
-		],
-		section: "OM of the Month",
-
-		ruleset: ['Pokemon', 'Standard', 'Baton Pass Clause', 'Team Preview'],
-		banlist: ['Dragon Rage', 'Sonic Boom', 'Swagger'],
-		validateSet: function (set, teamHas) {
-			const species = set.species || set.name;
-			let template = Tools.getTemplate(species);
-			if (template.prevo) {
-				return [species + " isn't the first in its evolution family."];
-			}
-			if (!template.nfe) {
-				return [species + " doesn't have an evolution family."];
-			}
-			if (template.tier === 'LC Uber' || template.species in {'Fletchling':1, 'Gligar':1, 'Misdreavus':1, 'Scyther':1, 'Sneasel':1, 'Tangela':1}) {
-				return [species + " is banned from LC Extended."];
-			}
-			const ability = set.ability;
-			if (Object.values(template.abilities).indexOf(ability) < 0 || ability === 'Moody') {
-				return [species + " doesn't have a legal ability."];
-			}
-			const level = set.level;
-			let problems;
-			while (template.evos.length) {
-				let evos = template.evos;
-				for (let i = 0; i < evos.length; i++) {
-					template = Tools.getTemplate(evos[i]);
-					set.species = template.species;
-					set.ability = template.abilities[0];
-					set.level = template.evoLevel;
-					problems = this.validateSet(set, teamHas) || [];
-					if (!problems.length) {
-						set.species = species;
-						set.ability = ability;
-						set.level = Tools.clampIntRange(level, 1, 5);
-						return;
-					}
-				}
-			}
-			for (let i = 0; i < problems.length; i++) {
-				problems[i] = problems[i].replace(template.species, species);
-			}
-			return problems;
-		}
-	},
 	/*{
 		name: "[Seasonal] Super Squad Smackdown",
 		desc: ["&bullet; <a href=\"https://www.smogon.com/forums/threads/3491902/\">Seasonal Ladder</a>"],
