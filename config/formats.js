@@ -3666,10 +3666,10 @@ exports.Formats = [
 
 		ruleset: ['OU'],
 		onBegin: function () {
-			for (let i = 0; i < this.p1.pokemon.length; i++) {
+			for (var i = 0; i < this.p1.pokemon.length; i++) {
 				this.p1.pokemon[i].canMegaEvo = false;
 			}
-			for (let i = 0; i < this.p2.pokemon.length; i++) {
+			for (var i = 0; i < this.p2.pokemon.length; i++) {
 				this.p2.pokemon[i].canMegaEvo = false;
 			}
 		}
