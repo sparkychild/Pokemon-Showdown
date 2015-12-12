@@ -31,7 +31,6 @@ exports.Formats = [
 		],
 		section: "ORAS Singles",
 
-		searchShow: false,
 		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
 		banlist: ['Uber', 'Soul Dew', 'Shadow Tag']
 	},
@@ -67,15 +66,6 @@ exports.Formats = [
 		],
 		section: "ORAS Singles",
 
-		searchShow: false,
-		ruleset: ['UU'],
-		banlist: ['UU', 'BL2']
-	},
-	{
-		name: "RU (suspect test)",
-		section: "ORAS Singles",
-
-		challengeShow: false,
 		ruleset: ['UU'],
 		banlist: ['UU', 'BL2']
 	},
@@ -92,7 +82,7 @@ exports.Formats = [
 		banlist: ['RU', 'BL3']
 	},
 	{
-		name: "PU (suspect test)",
+		name: "PU",
 		desc: [
 			"The newest official tier!",
 			"&bullet; <a href=\"https://www.smogon.com/forums/forums/pu.327/\">PU</a>"
