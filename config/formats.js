@@ -352,7 +352,6 @@ exports.Formats = [
 			validate: [6, 6]
 		},
 		ruleset: ['Pokemon', 'Standard GBU', 'Team Preview'],
-		banlist: ['Tornadus + Defiant', 'Thundurus + Defiant', 'Landorus + Sheer Force'],
 		requirePentagon: true,
 		onValidateTeam: function (team) {
 			var problems = [];
