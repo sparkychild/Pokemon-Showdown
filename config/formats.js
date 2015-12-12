@@ -382,10 +382,6 @@ exports.Formats = [
 
 	{
 		name: "350 Cup",
-		desc: [
-			"Pok&eacute;mon with a base stat total of 350 or lower get their stats doubled.",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3512945/\">350 Cup</a>"
-		],
 		section: "OM of the Month",
 		column: 2,
 
