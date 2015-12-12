@@ -408,7 +408,7 @@ exports.Formats = [
 		banlist: ['Dragon Rage', 'Sonic Boom', 'Swagger'],
 		validateSet: function (set, teamHas) {
 			const species = set.species || set.name;
-			let template = Tools.getTemplate(species);
+			var template = Tools.getTemplate(species);
 			if (template.prevo) {
 				return [species + " isn't the first in its evolution family."];
 			}
@@ -423,7 +423,7 @@ exports.Formats = [
 				return [species + " doesn't have a legal ability."];
 			}
 			const level = set.level;
-			let problems;
+			var problems;
 			while (template.evos.length) {
 				let evos = template.evos;
 				for (let i = 0; i < evos.length; i++) {
@@ -440,7 +440,7 @@ exports.Formats = [
 					}
 				}
 			}
-			for (let i = 0; i < problems.length; i++) {
+			for (var i = 0; i < problems.length; i++) {
 				problems[i] = problems[i].replace(template.species, species);
 			}
 			return problems;
