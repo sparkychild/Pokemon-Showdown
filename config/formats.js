@@ -3660,19 +3660,6 @@ exports.Formats = [
 		]
 	},
 	{
-		name: "Tier Shift",
-		desc: [
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3554765/\">Tier Shift</a>"
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3532973/\">Tier Shift</a>",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3536719/\">Tier Shift Viability Ranking</a>"
-		],
-		section: "Other Metagames",
-
-		mod: 'tiershift',
-		ruleset: ['OU'],
-		banlist: ['Shadow Tag', 'Swift Swim', 'Chatter']
-	},
-	{
 		name: "OU (no Mega)",
 		desc: ["&bullet; <a href=\"https://www.smogon.com/forums/threads/3536150/\">OU (no Mega) Viability Ranking</a>"],
 		section: "Other Metagames",
