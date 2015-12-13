@@ -301,6 +301,7 @@ exports.grouplist = [
 		ip: true,
 		alts: '@u',
 		tournamentsmanagement: true
+		roomdriver: true,
 	},
 	
 	{
