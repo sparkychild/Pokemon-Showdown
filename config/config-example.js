@@ -300,8 +300,8 @@ exports.grouplist = [
 		forcerename: true,
 		ip: true,
 		alts: '@u',
-		tournamentsmanagement: true
-		roomdriver: true,
+		tournamentsmanagement: true,
+		roomdriver:true,
 	},
 	
 	{
