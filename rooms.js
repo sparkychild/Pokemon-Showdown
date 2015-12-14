@@ -304,7 +304,6 @@ var GlobalRoom = (function () {
 			this.chatRoomData = [{
 				title: 'Lobby',
 				isOfficial: true,
-				autojoin: true
 			}, {
 				title: 'Staff',
 				isPrivate: true,
