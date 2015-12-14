@@ -302,9 +302,6 @@ var GlobalRoom = (function () {
 
 		if (!this.chatRoomData.length) {
 			this.chatRoomData = [{
-				title: 'Lobby',
-				isOfficial: true,
-			}, {
 				title: 'Staff',
 				isPrivate: true,
 				staffRoom: true,
