@@ -15,15 +15,12 @@ var prices = {
 	"fix": 10,
 	"declare": 15,
 	"poof": 20,
-	"customavatar": 35,
+	"customavatar": 30,
 	"animatedavatar": 40,
-	"rainercard": 40,
-	"leagueshop": 55,
-	"chatroom": 70,
-	"roomintro": 30,
-	"trainercarddesign": 20,
-	"globalvoice": 1000,
-	"userlisticon": 750,
+	"trainercard": 35,
+	"chatroom": 35,
+	"globalvoice": 100,
+	"userlisticon": 100,
 };
 
 function readMoney(userid, callback) {
@@ -341,15 +338,12 @@ exports.commands = {
 	 		'<tr><td>Fix</td><td>Buys the ability to alter your current custom avatar or infobox (don\'t buy if you have neither)</td><td>10</td></tr>' +
 	 		'<tr><td>Declare</td><td>You get the ability to have a message declared in the lobby. This can be used for league advertisement (not server)</td><td>15</td></tr>' +
 			'<tr><td>Poof</td><td>Buy a poof message to be added into the pool of possible poofs</td><td>20</td></tr>' +
-			'<tr><td>Trainer Card Design</td><td>Buys a Trainer Card design from The Laboratory</td><td>20</td></tr>' +
-			'<tr><td>Room intro</td><td>Buys a roomintro design from The Laboratory</td><td>30</td></tr>' +
-	 		'<tr><td>Custom Avatar</td><td>Buys a custom avatar to be applied to your name (You supply, must be .png format. Images larger than 80x80 may not show correctly.)</td><td>35</td></tr>' +
+	 		'<tr><td>Custom Avatar</td><td>Buys a custom avatar to be applied to your name (You supply, must be .png format. Images larger than 80x80 may not show correctly.)</td><td>30</td></tr>' +
+	 		'<tr><td>Chat Room</td><td>Buys a chatroom for you to own (comes with a free welcome message)</td><td>35</td></tr>' +
 	 		'<tr><td>Animated Avatar</td><td>Buys an animated avatar to be applied to your name (You supply, must be .gif format. Images larger than 80x80 may not show correctly.)</td><td>40</td></tr>' +
-	 		'<tr><td>Trainer Card</td><td>Buys an infobox that will be viewable with a command such as /tailz.</td><td>40</td></tr>' +
-	 		'<tr><td>League Shop</td><td>Buys a fully customizable shop for your league room. The bucks earned from purchases go to the room founder or room bank.</td><td>55</td></tr>' +
-	 		'<tr><td>Chat Room</td><td>Buys a chatroom for you to own (comes with a free welcome message)</td><td>70</td></tr>' +
-	 		'<tr><td>Userlist Icon</td><td>Buys a userlist icon next to your name in 3 different rooms</td><td>750</td></tr>' +
-	 		'<tr><td>Chat Room</td><td>Buys global voice (+)</td><td>1000</td></tr>' +
+	 		'<tr><td>Trainer Card</td><td>Buys an infobox that will be viewable with a command such as /tailz.</td><td>35</td></tr>' +
+	 		'<tr><td>Userlist Icon</td><td>Buys a userlist icon next to your name in 3 different rooms</td><td>100</td></tr>' +
+	 		'<tr><td>Global Voice</td><td>Buys global voice. Must have a good chat presence. (+)</td><td>100</td></tr>' +
 	 		
 	 		
 	 		'</table><br />To buy an item from the shop, use /buy [item]. <br />Use /currencyhelp to view money-based commands.<br />All sales final, no refunds will be provided.</center>'
