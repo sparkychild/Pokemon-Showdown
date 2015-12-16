@@ -62,7 +62,6 @@ body {
 .pm-window.focused h3, .pm-window.focused h3:hover {
 	background: #000000;
 	color:#ffcc66;
-    border: 1px solid #000000;
 }
 
 .pm-log-add{
