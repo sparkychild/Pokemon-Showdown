@@ -51,7 +51,7 @@ exports.commands = {
 		if (!this.can('roommod', null, room)) return false;
 		if (nightclub[room.id]) return this.sendReply('This room is already engulfed in nightclubness.');
 		nightclub[room.id] = true;
-		room.addRaw('<div style = "background: black; margin: -3px"><font size=6>' + nightclubify('RAISE YOUR PIKAS!!! nightclub mode: ON!!!') + '</font><font size="2"> started by: ' + user.userid + '</font></div>');
+		room.addRaw('<div style = "background: black; margin: -3px"><font size=6>' + nightclubify('IDM we in dis!!! nightclub mode: ON!!!') + '</font><font size="2"> started by: ' + user.userid + '</font></div>');
 	},
 	dayclub: function(target, room, user, connection) {
 		if (!this.can('roommod', null, room)) return false;
