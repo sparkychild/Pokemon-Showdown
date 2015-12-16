@@ -55,13 +55,13 @@ body {
 }
 
 .pm-window h3:hover {
-    color:#000000;
-    background: #ffcc66 ;
+    color:#ffcc66;
+    background: #000000 ;
   }
 
 .pm-window.focused h3, .pm-window.focused h3:hover {
-	background: #ffcc66;
-	color:#000000;
+	background: #000000;
+	color:#ffcc66;
     border: 1px solid #000000;
 }
 
