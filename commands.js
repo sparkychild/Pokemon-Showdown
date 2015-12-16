@@ -721,40 +721,6 @@ away: 'afk',
 		}
 	},
 	
-	roommother: function (target, room, user) {
-		if (!room.chatRoomData) {
-			return this.sendReply("/roommother - This room isn't designed for per-room moderation to be added.");
-		}
-		target = this.splitTarget(target, true);
-		var targetUser = this.targetUser;
-		if (!targetUser) return this.sendReply("User '" + this.targetUsername + "' is not online.");
-		if (!this.can('makeroom')) return false;
-		if (!room.auth) room.auth = room.chatRoomData.auth = {};
-		room.auth[targetUser.userid] = '♕';
-		room.senpai = targetUser.userid;
-		this.addModCommand(targetUser.name + ' was evolved into Room Mother by ' + user.name + '.');
-		room.onUpdateIdentity(targetUser);
-		room.chatRoomData.founder = room.mother;
-		Rooms.global.writeChatRoomData();
-	},
-	
-	roomboss: function (target, room, user) {
-		if (!room.chatRoomData) {
-			return this.sendReply("/roomboss - This room isn't designed for per-room moderation to be added.");
-		}
-		target = this.splitTarget(target, true);
-		var targetUser = this.targetUser;
-		if (!targetUser) return this.sendReply("User '" + this.targetUsername + "' is not online.");
-		if (!this.can('makeroom')) return false;
-		if (!room.auth) room.auth = room.chatRoomData.auth = {};
-		room.auth[targetUser.userid] = '¥';
-		room.boss = targetUser.userid;
-		this.addModCommand(targetUser.name + ' was evolved into Room BO$$ by ' + user.name + '.');
-		room.onUpdateIdentity(targetUser);
-		room.chatRoomData.founder = room.boss;
-		Rooms.global.writeChatRoomData();
-	},
-	
 	roomfounder: function (target, room, user) {
 		if (!room.chatRoomData) {
 			return this.sendReply("/roomfounder - This room isn't designed for per-room moderation to be added.");
@@ -812,95 +778,6 @@ away: 'afk',
 		room.auth[targetUser.userid] = '&';
 		this.addModCommand("" + name + " was evolved in to Room Leader by " + user.name + ".");
 		room.onUpdateIdentity(targetUser);
-		Rooms.global.writeChatRoomData();
-	},
-	
-	roombae: function (target, room, user) {
-		if (!room.chatRoomData) {
-			return this.sendReply("/roombae - This room isn't designed for per-room moderation to be added");
-		}
-		target = this.splitTarget(target, true);
-		var targetUser = this.targetUser;
-
-		if (!targetUser) return this.sendReply("User '" + this.targetUsername + "' is not online.");
-
-		if (room.founder !== user.userid && !this.can('makeroom')) return this.sendReply('/roombae - Access denied.');
-
-		if (!room.auth) room.auth = room.chatRoomData.auth = {};
-
-		var name = targetUser.name;
-
-		room.auth[targetUser.userid] = '\u2661';
-		room.bae = targetUser.userid;
-		this.addModCommand("" + name + " was evolved in to Room Bae by " + user.name + ".");
-		room.onUpdateIdentity(targetUser);
-		room.chatRoomData.leader = room.bae;
-		Rooms.global.writeChatRoomData();
-	},
-	
-		roomkohai: function (target, room, user) {
-		if (!room.chatRoomData) {
-			return this.sendReply("/roomkohai - Senpai hasn't noticed you");
-		}
-		target = this.splitTarget(target, true);
-		var targetUser = this.targetUser;
-
-		if (!targetUser) return this.errorReply("User '" + this.targetUsername + "' is not online.");
-
-		if (!this.can('makeroom')) return false;
-
-		if (!room.auth) room.auth = room.chatRoomData.auth = {};
-
-		var name = targetUser.name;
-
-		room.auth[targetUser.userid] = '$';
-		this.addModCommand("" + name + " was evolved in to Room Kohai by " + user.name + ".");
-		room.onUpdateIdentity(targetUser);
-		room.chatRoomData.kohai = room.kohai;
-		Rooms.global.writeChatRoomData();
-	},
-	
-		roomoniisan: function (target, room, user) {
-		if (!room.chatRoomData) {
-			return this.sendReply("/roomoniisan - looking after imoutosan");
-		}
-		target = this.splitTarget(target, true);
-		var targetUser = this.targetUser;
-
-		if (!targetUser) return this.errorReply("User '" + this.targetUsername + "' is not online.");
-
-		if (!this.can('makeroom')) return false;
-
-		if (!room.auth) room.auth = room.chatRoomData.auth = {};
-
-		var name = targetUser.name;
-
-		room.auth[targetUser.userid] = '\u262F';
-		this.addModCommand("" + name + " was evolved in to Room oniisan by " + user.name + ".");
-		room.onUpdateIdentity(targetUser);
-		room.chatRoomData.oniisan = room.oniisan;
-		Rooms.global.writeChatRoomData();
-	},
-	
-	roomnaughtystep: function (target, room, user) {
-		if (!room.chatRoomData) {
-			return this.sendReply("/roomnaughtystep - bleh");
-		}
-		target = this.splitTarget(target, true);
-		var targetUser = this.targetUser;
-
-		if (!targetUser) return this.errorReply("User '" + this.targetUsername + "' is not online.");
-
-		if (!this.can('makeroom')) return false;
-
-		if (!room.auth) room.auth = room.chatRoomData.auth = {};
-
-		var name = targetUser.name;
-
-		room.auth[targetUser.userid] = '\uDC4E';
-		this.addModCommand("" + name + " was put on the naughty step by " + user.name + ".");
-		room.onUpdateIdentity(targetUser);
-		room.chatRoomData.voice = room.naughtystep;
 		Rooms.global.writeChatRoomData();
 	},
 	
@@ -1015,12 +892,8 @@ roomstaff: 'roomauth',
                         rankLists[targetRoom.auth[u]].push(u);
                 }
  
-                var buffer = [];
-                if (room.boss) buffer.push('Room BO$$:\n' + room.boss);
-                if (room.mother) buffer.push('Room Mother:\n' + room.mother);
+                var buffer = []
                 if (room.founder) buffer.push('Room Founder:\n' + room.founder);
-                if (room.bae) buffer.push('Room Bae:\n' + room.bae);
-                if (room.naughtystep) buffer.push('Naughty Step:\n' + room.naughtystep);
                 Object.keys(rankLists).sort(function (a, b) {
                         return (Config.groups[b] || {rank:0}).rank - (Config.groups[a] || {rank:0}).rank;
                 }).forEach(function (r) {
