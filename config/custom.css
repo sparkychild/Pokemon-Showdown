@@ -1,3 +1,15 @@
+#lobby-userlist-user-wndo, #staff-userlist-user-wndo, #wifi-userlist-user-wndo, #luxmusic-userlist-user-wndo, #smashbros-userlist-user-wndo, #gamescorner-userlist-user-wndo {
+    background:url("http://pokedream.com/pokedex/images/mini/007.gif") no-repeat right
+}    
+#lobby-userlist-user-chaotic, #staff-userlist-user-chaotic, #wifi-userlist-user-chaotic, #luxmusic-userlist-user-chaotic, #smashbros-userlist-user-chaotic, #gamescorner-userlist-user-chaotic {
+    background:url("http://i.imgur.com/HgnLCV6.png") no-repeat right
+}    
+#lobby-userlist-user-opvictreebel, #staff-userlist-user-opvictreebel, #wifi-userlist-user-opvictreebel, #luxmusic-userlist-user-opvictreebel, #smashbros-userlist-user-opvictreebel, #gamescorner-userlist-user-opvictreebel {
+    background:url("http://pokedream.com/pokedex/images/mini/491.gif") no-repeat right
+}    
+#lobby-userlist-user-ssha {
+    background:url("http://pokedream.com/pokedex/images/mini/302.gif") no-repeat right
+}    
 body {
     background: url(http://i.imgur.com/M72aRlL.gif?1) no-repeat;
     background-color: #A9ABBD;
