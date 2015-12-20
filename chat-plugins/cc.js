@@ -7,7 +7,7 @@ function writeIconCSS() {
  
 exports.commands = {
         ccset: function (target, room, user) {
-		if (user.userid !== 'lmaoitsbt','chaotic','wndo','OPVictreebel') return this.errorReply('/ccset - PM A Admin to set your custom color.');
+		if (user.userid !== 'Lmao Its BT','chaotic','wndo','OPVictreebel') return this.errorReply('/ccset - PM A Admin to set your custom color.');
                 var args = target.split(',');
                 if (args.length < 2) return this.errorReply('/ccset [username], [color] - Sets an custom color to a user for all rooms.');
                 var username = toId(args.shift());
