@@ -2836,6 +2836,8 @@ exports.BattleMovedex = {
 					basePower: 140,
 					category: "Special",
 					flags: {},
+					effectType: 'Move',
+					isFutureMove: true,
 					type: 'Steel'
 				}
 			};
@@ -5018,6 +5020,8 @@ exports.BattleMovedex = {
 					category: "Special",
 					flags: {},
 					ignoreImmunity: false,
+					effectType: 'Move',
+					isFutureMove: true,
 					type: 'Psychic'
 				}
 			};
@@ -13503,7 +13507,7 @@ exports.BattleMovedex = {
 					this.add('-activate', target, 'Substitute', '[damage]');
 				}
 				if (move.recoil) {
-					this.damage(Math.round(damage * move.recoil[0] / move.recoil[1]), source, target, 'recoil');
+					this.damage(this.clampIntRange(Math.round(damage * move.recoil[0] / move.recoil[1]), 1), source, target, 'recoil');
 				}
 				if (move.drain) {
 					this.heal(Math.ceil(damage * move.drain[0] / move.drain[1]), source, target, 'drain');
@@ -14621,16 +14625,11 @@ exports.BattleMovedex = {
 			},
 			onStart: function (target, source) {
 				this.add('-fieldstart', 'move: Trick Room', '[of] ' + source);
-				this.getStatCallback = function (stat, statName) {
-					// If stat is speed and does not overflow (Trick Room Glitch) return negative speed.
-					if (statName === 'spe' && stat <= 1809) return -stat;
-					return stat;
-				};
 			},
+			// Speed modification is changed in BattlePokemon.getDecisionSpeed() in battle-engine.js
 			onResidualOrder: 23,
 			onEnd: function () {
 				this.add('-fieldend', 'move: Trick Room');
-				this.getStatCallback = null;
 			}
 		},
 		secondary: false,
@@ -15102,7 +15101,7 @@ exports.BattleMovedex = {
 		accuracy: 100,
 		basePower: 60,
 		category: "Special",
-		desc: "Has a 10% chance to confuse the target.",
+		desc: "Has a 20% chance to confuse the target.",
 		shortDesc: "20% chance to confuse the target.",
 		id: "waterpulse",
 		name: "Water Pulse",
