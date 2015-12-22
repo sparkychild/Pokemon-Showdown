@@ -7,8 +7,8 @@
 #lobby-userlist-user-opvictreebel, #staff-userlist-user-opvictreebel, #wifi-userlist-user-opvictreebel, #luxmusic-userlist-user-opvictreebel, #smashbros-userlist-user-opvictreebel, #gamescorner-userlist-user-opvictreebel {
     background:url("http://pokedream.com/pokedex/images/mini/491.gif") no-repeat right
 }    
-#lobby-userlist-user-ssha {
-    background:url("http://pokedream.com/pokedex/images/mini/302.gif") no-repeat right
+#lobby-userlist-user-ssha, #luxmusic-userlist-user-ssha {
+    background:url("http://pokedream.com/pokedex/images/mini/154.gif") no-repeat right
 }    
 body {
     background: url(http://i.imgur.com/M72aRlL.gif?1) no-repeat;
