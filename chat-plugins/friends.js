@@ -118,7 +118,7 @@ createfriends: function(target, room, user, connection) {
 		}
 		this.sendReply(targetUser.name + ' was added to your friends list.');
 		targetUser.send(user.name + ' has added you to their friends list.');
-/********************************
+
 	},
 	
 	removefriend: function(target, room, user, connection) {
@@ -162,6 +162,5 @@ createfriends: function(target, room, user, connection) {
 		if(Users.get(target).connected) {
 			Users.get(target).send(user.name + ' has removed you from their friends list.');
 		}
-********************************/
 	}
 };
