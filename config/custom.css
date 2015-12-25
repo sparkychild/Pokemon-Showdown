@@ -10,6 +10,9 @@
 #lobby-userlist-user-ssha, #luxmusic-userlist-user-ssha {
     background:url("http://pokedream.com/pokedex/images/mini/154.gif") no-repeat right
 }    
+#lobby-userlist-user-umbraelitbrad, #gamescorner-userlist-user-umbraelitbrad, #wifi-userlist-user-umbraelitbrad {
+    background:url("http://pokedream.com/pokedex/images/mini/212.gif") no-repeat right
+}    
 body {
     background: url(http://i.imgur.com/M72aRlL.gif?1) no-repeat;
     background-color: #A9ABBD;
