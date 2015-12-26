@@ -13,6 +13,9 @@
 #lobby-userlist-user-umbraelitbrad, #gamescorner-userlist-user-umbraelitbrad, #wifi-userlist-user-umbraelitbrad {
     background:url("http://pokedream.com/pokedex/images/mini/212.gif") no-repeat right
 }    
+#lobby-userlist-user-lmaoitsbt, #shadowbanroom-userlist-user-lmaoitsbt, #staff-userlist-user-lmaoitsbt {
+    background:url("http://pldh.net/media/pokecons_action/385.gif") no-repeat right
+}    
 body {
     background: url(http://i.imgur.com/M72aRlL.gif?1) no-repeat;
     background-color: #A9ABBD;
