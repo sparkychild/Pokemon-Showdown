@@ -81,16 +81,16 @@ exports.Formats = [
 		ruleset: ['RU'],
 		banlist: ['RU', 'BL3']
 	},
-	{
-		name: "PU",
+{
+		name: "PU (suspect test)",
 		desc: [
-			"The newest official tier!",
-			"&bullet; <a href=\"https://www.smogon.com/forums/forums/pu.327/\">PU</a>"
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3557849/\">np: PU Stage 5</a>",
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3528743/\">PU Viability Ranking</a>"
 		],
 		section: "ORAS Singles",
 
 		ruleset: ['NU'],
-		banlist: ['NU', 'BL4', 'Chatter', 'Shell Smash + Baton Pass']
+		banlist: ['NU', 'BL4', 'Chatter']
 	},
 	{
 		name: "LC",
