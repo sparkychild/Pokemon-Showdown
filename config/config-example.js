@@ -242,6 +242,7 @@ exports.grouplist = [
 		{
 		symbol: '#',
 		id: "owner",
+		roomleader:true,
 		name: "Room Owner",
 		inherit: '@',
 		jurisdiction: 'u',
