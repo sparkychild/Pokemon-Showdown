@@ -122,7 +122,7 @@ function create_table() {
 	var emotes_list_right = emotes_list.splice(len / 2, len / 2);
 
 	for (i = 0; i < len / 2; i++) {
-		let emote1 = emotes_list[i],
+		var emote1 = emotes_list[i],
 			emote2 = emotes_list_right[i];
 		if (emote2) {
 			emotes_group_list.push("<tr>" + emote1 + emote2 + "</tr>");
