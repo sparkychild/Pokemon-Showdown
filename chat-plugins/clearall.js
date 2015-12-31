@@ -10,11 +10,11 @@ clearall: function (target, room, user) {
 	globalclearall: function (target, room, user) {
 		if (!this.can('gdeclare')) return false;
 
-		for (let u in Users.users) {
+		for (var u in Users.users) {
 			Users.users[u].popup("All rooms are being clear.");
 		}
 
-		for (let r in Rooms.rooms) {
+		for (var r in Rooms.rooms) {
 			clearRoom(Rooms.rooms[r]);
 		}
 	},
