@@ -55,7 +55,7 @@ body {
 }
 
 .pm-window h3{
-    background: #ffcc66;
+    background: #ffcc66 url("http://pldh.net/media/pokecons_action/179.gif") bottom right no-repeat;
     color:#000000;
 }
 
@@ -70,7 +70,7 @@ body {
 }
 
 .pm-log-add{
-    background:#ffcc66 url("http://pldh.net/media/pokecons_action/179.gif") bottom right no-repeat;;
+    background:#ffcc66 ;
 }
 
 .tabbar a.button.cur, .tabbar a.button.cur:hover {
