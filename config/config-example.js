@@ -351,6 +351,8 @@ exports.grouplist = [
 		inherit: ' ',
 		alts: 's',
 		broadcast: true,
+		tournaments:true,
+		tournamentsmoderation:true,
 		tournamentsmanagement: true
 	},
 	
