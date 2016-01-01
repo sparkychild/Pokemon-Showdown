@@ -95,7 +95,7 @@ Rooms.Room.prototype.add = function (message) {
 	return this;
 };
 
-Users.Connection.prototype.sendTo = function (roomid, data) {
+Users.Connection.prototype.sendTo = function (roomId, data) {
 	if (roomid && nightclubs[roomid.id]) {
 		var style = '|html|<div style = "color: white; text-shadow: 0px 0px 6px, 0px 0px 6px; background: black; padding: 2px; margin: -3px">';
 		if (data.match(/^\|html\||^\|raw\|/m) && !data.match(/\|\~\|/m)) {
