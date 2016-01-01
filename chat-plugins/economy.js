@@ -17,6 +17,7 @@ var prices = {
 	"poof": 20,
 	"customavatar": 30,
 	"animatedavatar": 40,
+	"customcolour": 40,
 	"trainercard": 35,
 	"chatroom": 35,
 	"globalvoice": 100,
@@ -324,6 +325,14 @@ exports.commands = {
 					self.sendReply("You have purchased a userlist icon design. Please get a 32x32 link of this icon and send it to an Administrator, if you have any questions about what you can add pm an Admin. Please note that it will not be made instantly.");
 					matched = true;
 					break;
+				case 'customcolour':
+					if (userMoney < prices[itemid]) return self.sendReply("You need " + (prices[itemid] - userMoney) + " more bucks to purchase a userlist icon.");
+					writeMoney(user.userid, prices[itemid] * -1);
+					logTransaction(user.name + " has purchased a custom colour for " + prices[itemid] + " bucks.");
+					messageSeniorStaff(user.name + " has purchased a userlist icon design.");
+					self.sendReply("You have purchased a custom colour icon. Please get colour hex code and send it to an Administrator, if you have any questions about what you can add pm an Admin. Please note that it will not be made instantly.");
+					matched = true;
+					break;
 	 		}
 
 	 		if (matched) return self.sendReply("You now have " + (userMoney - prices[itemid]) + " bucks left.");
@@ -334,13 +343,14 @@ exports.commands = {
 	 	if (!this.canBroadcast()) return;
 	 	this.sendReplyBox('<center><h4><b><u>' + shopTitle + '</u></b></h4><table border="1" cellspacing ="0" cellpadding="3"><tr><th>Item</th><th>Description</th><th>Price</th></tr>' +
 	 		'<tr><td>Custom Symbol</td><td>Buys a custom symbol to go in front of your name. (Temporary until restart)</td><td>5</td></tr>' +
-	 		'<tr><td>League Room</td><td>Purchases a room for your league. May be deleted if league becomes inactive.</td><td>5</td></tr>' +
-	 		'<tr><td>Fix</td><td>Buys the ability to alter your current custom avatar or infobox (don\'t buy if you have neither)</td><td>10</td></tr>' +
+	 		'<tr><td>League Room</td><td>Purchases a room for your league. May be deleted if league becomes inactive. (must have 5 members)</td><td>5</td></tr>' +
+	 		'<tr><td>Fix</td><td>Buys the ability to alter your current custom avatar/trainer card or userlist icon (don\'t buy if you have neither)</td><td>10</td></tr>' +
 	 		'<tr><td>Declare</td><td>You get the ability to have a message declared in the lobby. This can be used for league advertisement (not server)</td><td>15</td></tr>' +
 			'<tr><td>Poof</td><td>Buy a poof message to be added into the pool of possible poofs</td><td>20</td></tr>' +
 	 		'<tr><td>Custom Avatar</td><td>Buys a custom avatar to be applied to your name (You supply, must be .png format. Images larger than 80x80 may not show correctly.)</td><td>30</td></tr>' +
 	 		'<tr><td>Chat Room</td><td>Buys a chatroom for you to own (comes with a free welcome message)</td><td>35</td></tr>' +
 	 		'<tr><td>Trainer Card</td><td>Buys an infobox that will be viewable with a command such as /tailz.</td><td>35</td></tr>' +
+	 		'<tr><td>Custom Colour</td><td>Buys an custom colour for your name in the chat</td><td>40</td></tr>' +
 	 		'<tr><td>Animated Avatar</td><td>Buys an animated avatar to be applied to your name (You supply, must be .gif format. Images larger than 80x80 may not show correctly.)</td><td>40</td></tr>' +
 	 		'<tr><td>Userlist Icon</td><td>Buys a userlist icon next to your name in 3 different rooms</td><td>100</td></tr>' +
 	 		'<tr><td>Global Voice</td><td>Buys global voice (+). Must have a good chat presence. </td><td>100</td></tr>' +
