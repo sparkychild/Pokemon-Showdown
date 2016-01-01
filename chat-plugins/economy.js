@@ -19,7 +19,6 @@ var prices = {
 	"animatedavatar": 40,
 	"trainercard": 35,
 	"chatroom": 35,
-	"color": 40,
 	"globalvoice": 100,
 	"userlisticon": 100,
 };
@@ -325,14 +324,6 @@ exports.commands = {
 					self.sendReply("You have purchased a userlist icon design. Please get a 32x32 link of this icon and send it to an Administrator, if you have any questions about what you can add pm an Admin. Please note that it will not be made instantly.");
 					matched = true;
 					break;
-		        	case 'customcolor':
-					if (userMoney < prices[itemid]) return self.sendReply("You need " + (prices[itemid] - userMoney) + " more bucks to purchase a userlist icon.");
-					writeMoney(user.userid, prices[itemid] * -1);
-					logTransaction(user.name + " has purchased a Custom Color for " + prices[itemid] + " bucks.");
-					messageSeniorStaff(user.name + " has purchased a Custom Color.");
-					self.sendReply("You have purchased a Custom Color. Please get a hex color shade and send it to an Administrator, if you have any questions about what you can add pm an Admin. Please note that it will not be made instantly.");
-					matched = true;
-					break;
 	 		}
 
 	 		if (matched) return self.sendReply("You now have " + (userMoney - prices[itemid]) + " bucks left.");
@@ -351,7 +342,6 @@ exports.commands = {
 	 		'<tr><td>Chat Room</td><td>Buys a chatroom for you to own (comes with a free welcome message)</td><td>35</td></tr>' +
 	 		'<tr><td>Trainer Card</td><td>Buys an infobox that will be viewable with a command such as /tailz.</td><td>35</td></tr>' +
 	 		'<tr><td>Animated Avatar</td><td>Buys an animated avatar to be applied to your name (You supply, must be .gif format. Images larger than 80x80 may not show correctly.)</td><td>40</td></tr>' +
-	 		'<tr><td>Custom Color</td><td>Buys a Custom Color that will appear whehn you talk</td><td>40</td></tr>' +
 	 		'<tr><td>Userlist Icon</td><td>Buys a userlist icon next to your name in 3 different rooms</td><td>100</td></tr>' +
 	 		'<tr><td>Global Voice</td><td>Buys global voice (+). Must have a good chat presence. </td><td>100</td></tr>' +
 	 		
