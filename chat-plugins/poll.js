@@ -230,9 +230,9 @@ exports.commands = {
 		this.parse('/poll new ORAS Single tier?, ' + tiers);
 
 	},
-	randpoll: function(target, room, user) {
-		var tiers = ['Random Doubles Battle', 'Random Triples Battle', 'CC1v1', 'Random Monotype', 'Random Sky Battle', 'Random Ubers', 'Random LC', 'Random CAP', 'Random Monogen', 'CC2v2', 'Challenge Cup Metronome', 'Random Haxmons'];
-		this.parse('/poll new Random Tier?, ' + tiers);
+	tierpoll: function(target, room, user) {
+		var tiers = ['Anything Goes', 'Random Triples Battle', 'Challenge Cup 1v1', 'Monotype', 'Ubers','Overused', 'Underused','Rarelyused','Neverused','Pu' ,'Random Battles','Catch And EvolveP', 'Eights', 'Gen One Random / 0MM', ];
+		this.parse('/poll new Next Tour?, ' + tiers);
        },
        ompoll: function(target, room, user) {
 		var tiers = ['CAP', 'Balanced Hackmons', '1v1', 'Monotype', 'Tier Shift', 'PU', 'Inverse Battle', 'Almost Any Ability', 'STABmons', 'LC UU', 'Snowy OU'];
