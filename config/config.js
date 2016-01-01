@@ -308,7 +308,7 @@ exports.grouplist = [
 	{
 		symbol: '¥',
 		id: "boss",
-		name: "Boss",
+		name: "Bos",
 		inherit: '+',
 		jurisdiction: 'u',
 		announce: true,
