@@ -1,12 +1,12 @@
 'use strict';
 
-let color = require('../config/color');
-let moment = require('moment');
+var color = require('../config/color');
+var moment = require('moment');
 
-let BR = '<br>';
-let SPACE = '&nbsp;';
-let profileColor = '#24678d';
-let trainersprites = [1, 2, 101, 102, 169, 170, 265, 266, 168];
+var BR = '<br>';
+var SPACE = '&nbsp;';
+var profileColor = '#24678d';
+var trainersprites = [1, 2, 101, 102, 169, 170, 265, 266, 168];
 
 /**
  * Profile constructor.
@@ -94,24 +94,24 @@ Profile.prototype.avatar = function () {
 		if (typeof this.image === 'string') return img(this.url + ':' + Config.port + '/avatars/' + this.image);
 		return img('http://play.pokemonshowdown.com/sprites/trainers/' + this.image + '.png');
 	}
-	for (let name in Config.customAvatars) {
+	for (var name in Config.customAvatars) {
 		if (this.username === name) {
 			return img(this.url + ':' + Config.port + '/avatars/' + Config.customAvatars[name]);
 		}
 	}
-	let selectedSprite = trainersprites[Math.floor(Math.random() * trainersprites.length)];
+	var selectedSprite = trainersprites[Math.floor(Math.random() * trainersprites.length)];
 	return img('http://play.pokemonshowdown.com/sprites/trainers/' + selectedSprite + '.png');
 };
 
 Profile.prototype.buttonAvatar = function () {
-	let css = 'border:none;background:none;padding:0;float:left;';
+	var css = 'border:none;background:none;padding:0;float:left;';
 	return '<button style="' + css + '" name="parseCommand" value="/user ' + this.username + '">' + this.avatar() + "</button>";
 };
 
 Profile.prototype.group = function () {
 	if (this.isOnline && this.user.group === ' ') return label('Group') + 'Regular User';
 	if (this.isOnline) return label('Group') + Config.groups[this.user.group].name;
-	for (let name in Users.usergroups) {
+	for (var name in Users.usergroups) {
 		if (toId(this.username) === name) {
 			return label('Group') + Config.groups[Users.usergroups[name].charAt(0)].name;
 		}
@@ -134,7 +134,7 @@ Profile.prototype.seen = function (timeAgo) {
 };
 
 Profile.prototype.show = function (callback) {
-	let userid = toId(this.username);
+	var userid = toId(this.username);
 
 	return this.buttonAvatar() +
 		SPACE + this.name() + BR +
@@ -148,8 +148,8 @@ exports.commands = {
 	profile: function (target, room, user) {
 		if (!this.canBroadcast()) return;
 		if (target.length >= 19) return this.sendReply("Usernames are required to be less than 19 characters long.");
-		let targetUser = this.targetUserOrSelf(target);
-		let profile;
+		var targetUser = this.targetUserOrSelf(target);
+		var profile;
 		if (!targetUser) {
 			profile = new Profile(false, target);
 		} else {
