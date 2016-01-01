@@ -7,7 +7,7 @@
 
 var permission = 'announce';
 
-class Poll {
+class = Poll {
 	constructor(room, question, options) {
 		if (room.pollNumber) {
 			room.pollNumber++;
