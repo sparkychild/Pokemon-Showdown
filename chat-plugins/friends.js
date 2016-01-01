@@ -1,166 +1,67 @@
 var fs = require('fs');
-exports.commands = { 
-createfriends: function(target, room, user, connection) {
-		if(!user.can('hotpatch')) return this.sendReply('You do not have enough authority to do this.');
-		fs.exists('config/friends.csv', function (exists) {
-			if(exists){
-				return connection.sendTo(room, 'Since this file already exists, you cannot do this.');
-			} else {
-				fs.writeFile('config/friends.csv', 'zinak, feliburn', function (err) {
-					if (err) throw err;
-					console.log('config/friends.csv created.');
-					connection.sendTo(room, 'config/friends.csv created.');
-				});
-			}
-		});
-	},
+const FILE_NAME = "config/friends.json";
+var friends;
+try {
+	friends = JSON.parse(fs.readFileSync(FILE_NAME));
+} catch (err) {
+	fs.writeFileSync(FILE_NAME, '{}');
+	friends = JSON.parse(fs.readFileSync(FILE_NAME));
+}
+
+exports.commands = {
 	friends: function(target, room, user, connection) {
 		if (!this.canBroadcast()) return;
+		if (!friends[user.userid] || !friends[user.userid].length) return this.sendReplyBox("You don't have any friends :c");
 
-		var data = fs.readFileSync('config/friends.csv','utf8')
-			var match = false;
-			var friends = '';
-			var row = (''+data).split("\n");
-			for (var i = 0; i < row.length; i++) {
-				if (!row[i]) continue;
-				var parts = row[i].split(",");
-				var userid = toId(parts[0]);
-				if (user.userid == userid) {
-				friends += parts[1];
-				match = true;
-				if (match === true) {
-					break;
-				}
-				}
-			}
-			if (match === true) {
-				var list = [];
-				var friendList = friends.split(' ');
-				for (var i = 0; i < friendList.length; i++) {
-					if(Users.get(friendList[i])) {
-						if(Users.get(friendList[i]).connected) {
-							list.push(friendList[i]);
-						}
-					}
-				}
-				if (list[0] === undefined) {
-					return this.sendReply('You have no online friends.');
-				}
-				var buttons = '';
-				for (var i = 0; i < list.length; i++) {
-					buttons = buttons + '<button style="border-radius:5px; border: 2px inset black; background-color: darkblue; color:lightblue; padding:3px " name="parseCommand" value="/user ' + Users.get(list[i]).userid + '">' + Users.get(list[i]).name + '</button>';
-				}
-				this.sendReplyBox('Your list of online friends:<br />' + buttons);
-			}
-			if (match === false) {
-				this.sendReplyBox('You have no friends. :(');
-			}
-		},
-	friendshelp: function () {
-		if (!this.canBroadcast()) return;
-		this.sendReplyBox(
-			"/friends - Displays a list of your friends<br />" +
-			"/addfriend [name] - Adds a user to your friend list<br />" +
-			"/removefriend [name] - Removes a user from your friend list ( Ask Steelchar to remove it for you)<br />" +
-			"/friendshelp - Displays friends commands<br />" 
-		);
-
+		var list = friends[user.userid].filter(function (friend) {
+			return Users.get(friend);
+		}).map(function (friend) {
+			return Users.get(friend);
+		});
+		var buttons = '';
+		list.forEach(function (friend) {
+			buttons = buttons + '<button style="border-radius:5px; border: 2px inset black; background-color: darkblue; color:lightblue; padding:3px " name="parseCommand" value="/user ' + friend.userid + '">' + friend.name + '</button> ';
+		}
+		this.sendReplyBox('Your list of online friends:<br />' + buttons);
 	},
-
-
 	addfriend: function(target, room, user, connection) {
+		if (!target || !target.trim()) return this.parse('/help friends');
+		if (!Users.get(target)) return this.sendReply('User ' + target + ' not found...');
 
-		if(!target) return this.parse('/help addfriend');
-		target = this.splitTarget(target);
-		var targetUser = this.targetUser;
-		if (!targetUser) {
-			return this.sendReply('User '+this.targetUsername+' not found.');
-		}
-		if (targetUser.userid === user.userid) {
-			return this.sendReply('Are you really trying to friend yourself?');
-		}
-		var data = fs.readFileSync('config/friends.csv','utf8')
-		var match = false;
-		var line = '';
-		var row = (''+data).split("\n");
-		for (var i = row.length; i > -1; i--) {
-			if (!row[i]) continue;
-			var parts = row[i].split(",");
-			var userid = toId(parts[0]);
-			if (user.userid == userid) {
-				match = true;
-			}
-			if (match === true) {
-				line = line + row[i];
-				var individuals = parts[1].split(" ");
-				for (var i = 0; i < individuals.length; i++) {
-					if (individuals[i] === targetUser.userid) {
-						return connection.send('This user is already in your friends list.');
-					}
-				}
-				break;
+		targetUser = Users.get(target);
+		if (targetUser.userid === user.userid) return this.sendReply(">Adding yourself to your friend list\nlol you loner");
+		if (!friends[user.userid]) friends[user.userid] = [];
+		else {
+			for (var i in friends[user.userid]) {
+				var friend = friends[user.userid][i];
+				if (friend === targetUser.userid || friend === toId(target)) return this.sendReply(targetUser.name + ' is already in your friend list!');
+				if (Users.get(friend) && Users.get(friend).userid === toId(target)) return this.sendReply(targetUser.name + ' is already in your friend list under the name "' + Users.get(friend).name + '".');
 			}
 		}
-		if (match === true) {
-			var re = new RegExp(line,"g");
-			fs.readFile('config/friends.csv', 'utf8', function (err,data) {
-			if (err) {
-				return console.log(err);
-			}
-			var result = data.replace(re, line +' '+targetUser.userid);
-			fs.writeFile('config/friends.csv', result, 'utf8', function (err) {
-				if (err) return console.log(err);
-			});
-			});
-		} else {
-			var log = fs.createWriteStream('config/friends.csv', {'flags': 'a'});
-			log.write("\n"+user.userid+','+targetUser.userid);
-		}
-		this.sendReply(targetUser.name + ' was added to your friends list.');
-		targetUser.send(user.name + ' has added you to their friends list.');
-
+		friends[user.userid].push(targetUser.userid);
+		fs.writeFileSync(FILE_NAME, JSON.stringify(friends, null, 1));
 	},
-	
-	removefriend: function(target, room, user, connection) {
-		
-		if(!target) return this.parse('/help removefriend');
-		var noCaps = target.toLowerCase();
-		var idFormat = toUserid(target);
-		var data = fs.readFileSync('config/friends.csv','utf8')
-		var match = false;
-		var line = '';
-		var row = (''+data).split("\n");
-		for (var i = row.length; i > -1; i--) {
-			if (!row[i]) continue;
-			var parts = row[i].split(",");
-			var userid = toId(parts[0]);
-			if (user.userid == userid) {
-				match = true;
-			}
-			if (match === true) {
-				line = line + row[i];
+	removefriend: function (target, room, user, connection) {
+		if (!target || !target.trim()) return this.parse('/help friends');
+		if (!friends[user.userid] || !friends[user.userid].length) return this.sendReplyBox("You don't have any friends yet :c");
+		var targetUser = toId(target);
+		target = Users.getExact(target) ? Users.getExact(target).name : target;
+		var index;
+		for (var i in friends[user.userid]) {
+			var friend = toId(friends[user.userid][i]);
+			if (friend === targetUser || Users.get(friend).userid === targetUser || friend in Users.get(friend).prevNames) {
+				index = i;
 				break;
 			}
 		}
-		if (match === true) {
-			var re = new RegExp(idFormat,"g");
-			var er = new RegExp(line,"g");
-			fs.readFile('config/friends.csv', 'utf8', function (err,data) {
-			if (err) {
-				return console.log(err);
-			}
-			var result = line.replace(re, '');
-			var replace = data.replace(er, result);
-			fs.writeFile('config/friends.csv', replace, 'utf8', function (err) {
-				if (err) return console.log(err);
-			});
-			});
-		} else {
-			return this.sendReply('This user doesn\'t appear to be in your friends. Make sure you spelled their username right.');
-		}
-		this.sendReply(idFormat + ' was removed from your friends list.');
-		if(Users.get(target).connected) {
-			Users.get(target).send(user.name + ' has removed you from their friends list.');
-		}
-	}
+		if (isNaN(index)) return this.sendReply(target + ' is not in your friend list...');
+		friends[user.userid].splice(index, 1);
+		fs.writeFileSync(FILE_NAME, JSON.stringify(friends, null, 1));
+		this.sendReply('You have removed ' + target + ' from your friend list.');
+	},
+	friendshelp: [
+		"/friends - Displays a list of your friends",
+		"/addfriend [name] - Adds a user to your friend list",
+		"/removefriend [name] - Removes a user from your friend list"
+	]
 };
