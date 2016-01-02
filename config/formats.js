@@ -405,7 +405,7 @@ exports.Formats = [
 			if (!team[0]) return;
 			var template = this.getTemplate(team[0].species);
 			var typeTable = template.types;
-			for (let i = 1; i < team.length; i++) {
+			for (var i = 1; i < team.length; i++) {
 				template = this.getTemplate(team[i].species);
 				if (template.tier === 'Uber') return [template.species + " is only allowed as the God."];
 				if (!template.types || !typeTable.intersect(template.types).length) return ["Followers must share a type with the God."];
