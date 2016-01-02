@@ -240,6 +240,12 @@ exports.grouplist = [
 		globalonly: true
 	},
 		{
+		symbol: '∆',
+		id: "memer",
+		name: "Memer",
+		globalonly: true
+	},
+		{
 		symbol: '#',
 		id: "owner",
 		roomleader:true,
