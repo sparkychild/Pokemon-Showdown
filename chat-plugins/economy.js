@@ -342,9 +342,9 @@ exports.commands = {
 
 	shop: function(target, room, user) {
 	 	if (!this.canBroadcast()) return;
-	 	this.sendReplyBox('<center><h4><b><u>' + shopTitle + '</u></b></h4><table border="1" cellspacing ="0" cellpadding="3"><tr><th>Item</th><th>Description</th><th>Price</th></tr>' +
-	 		'<tr><td>Custom Symbol</td><td>Buys a custom symbol to go in front of your name. (Temporary until restart)</td><td>5</td><button name="send" value="/buy customsymbol">Custom Symbol</button></tr>' +
-	 		'<tr><td>League Room</td><td>Purchases a room for your league. May be deleted if league becomes inactive. (must have 5 members)</td><td>5</td></tr>' +
+	 	this.sendReplyBox('<center><h4><b><u>' + shopTitle + '</u></b></h4><table border="1" cellspacing ="0" cellpadding="3"><tr><th>Item</th><th>Description</th><th>Price</th><th><buy></th></tr>' +
+	 		'<tr><td>Custom Symbol</td><td>Buys a custom symbol to go in front of your name. (Temporary until restart)</td><td>5</td></tr>' +
+	 		'<tr><td>League Room</td><td>Purchases a room for your league. May be deleted if league becomes inactive. (must have 5 members)</td><td>5</td><td><button name="send" value="/buy customsymbol">Custom Symbol</button></td></tr>' +
 	 		'<tr><td>Fix</td><td>Buys the ability to alter your current custom avatar/trainer card or userlist icon (don\'t buy if you have neither)</td><td>10</td></tr>' +
 	 		'<tr><td>Declare</td><td>You get the ability to have a message declared in the lobby. This can be used for league advertisement (not server)</td><td>15</td></tr>' +
 			'<tr><td>Poof</td><td>Buy a poof message to be added into the pool of possible poofs</td><td>20</td></tr>' +
