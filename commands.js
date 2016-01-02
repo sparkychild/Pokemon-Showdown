@@ -17,6 +17,7 @@
 
 const crypto = require('crypto');
 const fs = require('fs');
+const parseEmoticons = require('./chat-plugins/emoticons').parseEmoticons;
 
 const MAX_REASON_LENGTH = 300;
 const MUTE_LENGTH = 7 * 60 * 1000;
@@ -47,10 +48,11 @@ exports.commands = {
 			}
 		}
 
-		let buffer = Object.keys(rankLists).sort(function (a, b) {
+		let buffer = [];
+		Object.keys(rankLists).sort(function (a, b) {
 			return (Config.groups[b] || {rank: 0}).rank - (Config.groups[a] || {rank: 0}).rank;
-		}).map(function (r) {
-			return (Config.groups[r] ? Config.groups[r].name + "s (" + r + ")" : r) + ":\n" + rankLists[r].sortBy(toId).join(", ");
+		}).forEach(function (r) {
+			buffer.push((Config.groups[r] ? Config.groups[r].name + "s (" + r + ")" : r) + ":\n" + rankLists[r].sortBy(toId).join(", "));
 		});
 
 		if (!buffer.length) buffer = "This server has no global authority.";
@@ -133,11 +135,11 @@ exports.commands = {
 		this.pmTarget = (targetUser || this.targetUsername);
 		if (!targetUser || !targetUser.connected) {
 			if (targetUser && !targetUser.connected) {
-				this.errorReply("User " + this.targetUsername + " is offline.");
+				this.errorReply("User " + this.targetUsername + " is offline. Try using /tell to send them an offline message.");
 				return;
 			} else {
-				this.errorReply("User " + this.targetUsername + " not found. Did you misspell their name?");
-				return this.parse('/help msg');
+				this.errorReply("User "  + this.targetUsername + " not found. Did you misspell their name? If they are offline, try using /tell to send them an offline message.");
+				return this.parse('/help tell');
 			}
 			return;
 		}
@@ -211,7 +213,11 @@ exports.commands = {
 			}
 		}
 
+		let emoteMsg = parseEmoticons(target, room, user, true);
+		if ((!user.blockEmoticons && !targetUser.blockEmoticons) && emoteMsg) target = '/html ' + emoteMsg;
+
 		let message = '|pm|' + user.getIdentity() + '|' + targetUser.getIdentity() + '|' + target;
+
 		user.send(message);
 		if (targetUser !== user) targetUser.send(message);
 		targetUser.lastPM = user.userid;
@@ -297,16 +303,13 @@ exports.commands = {
 		}
 		return this.errorReply("An error occurred while trying to create the room '" + target + "'.");
 	},
-	makechatroomhelp: ["/makechatroom [roomname] - Creates a new room named [roomname]. Requires: & ~"],
+	makechatroomhelp: ["/makechatroom [roomname] - Creates a new room named [roomname]. Requires: ~"],
 
 	makegroupchat: function (target, room, user, connection, cmd) {
 		if (!user.autoconfirmed) {
 			return this.errorReply("You must be autoconfirmed to make a groupchat.");
 		}
-		if (!user.confirmed) {
-			return this.errorReply("You must be global voice or roomdriver+ in some public room to make a groupchat.");
-		}
-		// if (!this.can('makegroupchat')) return false;
+		if (!this.can('makegroupchat')) return false;
 		if (target.length > 64) return this.errorReply("Title must be under 32 characters long.");
 		let targets = target.split(',', 2);
 
@@ -372,7 +375,7 @@ exports.commands = {
 			isPersonal: true,
 			isPrivate: privacySettings[privacy],
 			auth: {},
-			introMessage: '<h2 style="margin-top:0">' + titleHTML + '</h2><p>There are several ways to invite people:<br />- in this chat: <code>/invite USERNAME</code><br />- anywhere in PS: link to <code>&lt;&lt;' + roomid + '>></code>' + (groupChatURL ? '<br />- outside of PS: link to <a href="' + groupChatURL + '">' + groupChatURL + '</a>' : '') + '</p><p>This room will expire after 40 minutes of inactivity or when the server is restarted.</p><p style="margin-bottom:0"><button name="send" value="/roomhelp">Room management</button>',
+			introMessage: '<h2 style="margin-top:0">' + titleHTML + '</h2><p>There are several ways to invite people:<br />- in this chat: <code>/invite USERNAME</code><br />- anywhere in PS: link to <code>&lt;&lt;' + roomid + '>></code>' + (groupChatURL ? '<br />- outside of PS: link to <a href="' + groupChatURL + '">' + groupChatURL + '</a>' : '') + '</p><p>This room will expire after 40 minutes of inactivity or when the server is restarted.</p><p style="margin-bottom:0"><button name="send" value="/roomhelp">Room management</button>'
 		});
 		if (targetRoom) {
 			// The creator is RO.
@@ -383,11 +386,10 @@ exports.commands = {
 		}
 		return this.errorReply("An unknown error occurred while trying to create the room '" + title + "'.");
 	},
-	makegroupchathelp: ["/makegroupchat [roomname], [private|hidden|public] - Creates a group chat named [roomname]. Leave off privacy to default to hidden. Requires global voice or roomdriver+ in a public room to make a groupchat."],
+	makegroupchathelp: ["/makegroupchat [roomname], [private|hidden|public] - Creates a group chat named [roomname]. Leave off privacy to default to hidden."],
 
 	deregisterchatroom: function (target, room, user) {
 		if (!this.can('makeroom')) return;
-		this.errorReply("NOTE: You probably want to use `/deleteroom` now that it exists.");
 		let id = toId(target);
 		if (!id) return this.parse('/help deregisterchatroom');
 		let targetRoom = Rooms.search(id);
@@ -400,45 +402,7 @@ exports.commands = {
 		}
 		return this.errorReply("The room '" + target + "' isn't registered.");
 	},
-	deregisterchatroomhelp: ["/deregisterchatroom [roomname] - Deletes room [roomname] after the next server restart. Requires: & ~"],
-
-	deletechatroom: 'deleteroom',
-	deletegroupchat: 'deleteroom',
-	deleteroom: function (target, room, user) {
-		if (!this.can('makeroom')) return;
-		let roomid = target.trim();
-		if (!roomid) return this.parse('/help deleteroom');
-		let targetRoom = Rooms.search(roomid);
-		if (!targetRoom) return this.errorReply("The room '" + target + "' doesn't exist.");
-		target = targetRoom.title || targetRoom.id;
-
-		if (targetRoom.id === 'global') {
-			return this.errorReply("This room can't be deleted.");
-		}
-
-		if (targetRoom.chatRoomData) {
-			if (targetRoom.isPrivate) {
-				if (Rooms.get('upperstaff')) {
-					Rooms.get('upperstaff').add('|raw|<div class="broadcast-red">Private chat room deleted: <b>' + Tools.escapeHTML(target) + '</b></div>').update();
-				}
-			} else {
-				if (Rooms.get('staff')) {
-					Rooms.get('staff').add('|raw|<div class="broadcast-red">Public chat room deleted: <b>' + Tools.escapeHTML(target) + '</b></div>').update();
-				}
-				if (Rooms.get('upperstaff')) {
-					Rooms.get('upperstaff').add('|raw|<div class="broadcast-red">Public chat room deleted: <b>' + Tools.escapeHTML(target) + '</b></div>').update();
-				}
-			}
-		}
-
-		targetRoom.add("|raw|<div class=\"broadcast-red\"><b>This room has been deleted.</b></div>");
-		targetRoom.update(); // |expire| needs to be its own message
-		targetRoom.add("|expire|This room has been deleted.");
-		this.sendReply("The room '" + target + "' was deleted.");
-		targetRoom.update();
-		targetRoom.destroy();
-	},
-	deleteroomhelp: ["/deleteroom [roomname] - Deletes room [roomname]. Requires: & ~"],
+	deregisterchatroomhelp: ["/deregisterchatroom [roomname] - Deletes room [roomname] after the next server restart. Requires: ~"],
 
 	hideroom: 'privateroom',
 	hiddenroom: 'privateroom',
@@ -834,13 +798,15 @@ exports.commands = {
 			rankLists[targetRoom.auth[u]].push(u);
 		}
 
-		let buffer = Object.keys(rankLists).sort(function (a, b) {
+		let buffer = [];
+		Object.keys(rankLists).sort(function (a, b) {
 			return (Config.groups[b] || {rank:0}).rank - (Config.groups[a] || {rank:0}).rank;
-		}).map(function (r) {
-			let roomRankList = rankLists[r].sort().map(function (s) {
-				return s in targetRoom.users ? "**" + s + "**" : s;
+		}).forEach(function (r) {
+			let roomRankList = [];
+			rankLists[r].sort().forEach(function (s) {
+				roomRankList.push(s in targetRoom.users ? "**" + s + "**" : s);
 			});
-			return (Config.groups[r] ? Config.groups[r].name + "s (" + r + ")" : r) + ":\n" + roomRankList.join(", ");
+			buffer.push((Config.groups[r] ? Config.groups[r].name + "s (" + r + ")" : r) + ":\n" + roomRankList.join(", "));
 		});
 
 		if (!buffer.length) {
@@ -1778,8 +1744,7 @@ exports.commands = {
 		if (!target) return this.parse('/help hotpatch');
 		if (!this.can('hotpatch')) return false;
 
-		let staff = Rooms('staff');
-		if (staff) staff.add("(" + user.name + " used /hotpatch " + target + ")");
+		this.logEntry(user.name + " used /hotpatch " + target);
 
 		if (target === 'chat' || target === 'commands') {
 			if (Monitor.hotpatchLock) return this.errorReply("Hotpatch has been disabled. (" + Monitor.hotpatchLock + ")");
@@ -1834,8 +1799,19 @@ exports.commands = {
 			} catch (e) {
 				return this.errorReply("Something failed while trying to hotpatch formats: \n" + e.stack);
 			}
-		} else if (target === 'learnsets' || target === 'validator') {
-			TeamValidator.ValidatorProcess.respawn();
+		} else if (target === 'learnsets') {
+			if (Monitor.hotpatchLock) return this.errorReply("Hotpatch has been disabled. (" + Monitor.hotpatchLock + ")");
+			try {
+				let toolsLoaded = !!Tools.isLoaded;
+				// uncache the tools.js dependency tree
+				CommandParser.uncacheTree('./tools.js');
+				// reload tools.js
+				global.Tools = require('./tools.js')[toolsLoaded ? 'includeData' : 'includeFormats'](); // note: this will lock up the server for a few seconds
+
+				return this.sendReply("Learnsets have been hotpatched.");
+			} catch (e) {
+				return this.errorReply("Something failed while trying to hotpatch learnsets: \n" + e.stack);
+			}
 		} else if (target.startsWith('disable')) {
 			if (Monitor.hotpatchLock) return this.errorReply("Hotpatch is already disabled.");
 			let reason = target.split(', ')[1];
@@ -2265,7 +2241,7 @@ exports.commands = {
 			loghash: datahash,
 			p1: players[0],
 			p2: players[1],
-			format: room.format,
+			format: room.format
 		}, function (success) {
 			if (success && success.errorip) {
 				connection.popup("This server's request IP " + success.errorip + " is not a registered server.");
@@ -2273,7 +2249,7 @@ exports.commands = {
 			}
 			connection.send('|queryresponse|savereplay|' + JSON.stringify({
 				log: data,
-				id: room.id.substr(7),
+				id: room.id.substr(7)
 			}));
 		});
 	},
@@ -2568,7 +2544,7 @@ exports.commands = {
 			if (!trustable || !targetUser) {
 				connection.send('|queryresponse|userdetails|' + JSON.stringify({
 					userid: toId(target),
-					rooms: false,
+					rooms: false
 				}));
 				return false;
 			}
@@ -2590,13 +2566,13 @@ exports.commands = {
 			let userdetails = {
 				userid: targetUser.userid,
 				avatar: targetUser.avatar,
-				rooms: roomList,
+				rooms: roomList
 			};
 			connection.send('|queryresponse|userdetails|' + JSON.stringify(userdetails));
 		} else if (cmd === 'roomlist') {
 			if (!trustable) return false;
 			connection.send('|queryresponse|roomlist|' + JSON.stringify({
-				rooms: Rooms.global.getRoomList(target),
+				rooms: Rooms.global.getRoomList(target)
 			}));
 		} else if (cmd === 'rooms') {
 			if (!trustable) return false;
@@ -2704,6 +2680,6 @@ exports.commands = {
 				this.errorReply("Help for the command '" + target + "' was not found. Try /help for general help");
 			}
 		}
-	},
+	}
 
 };
