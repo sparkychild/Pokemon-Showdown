@@ -241,8 +241,8 @@ exports.grouplist = [
 	},
 		{
 		symbol: '∆',
-		id: "memer",
-		name: "Memer",
+		id: "dev",
+		name: "Developer",
 		globalonly: true
 	},
 		{
