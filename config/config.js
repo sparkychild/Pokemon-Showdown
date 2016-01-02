@@ -304,36 +304,17 @@ exports.grouplist = [
 		ban: true,
 		modchat: true,
 		roomvoice: true,
+		voice:true,
+		roomdriver:true,
+		driver:true,
+		op:true,
+		roomop:true,
 		forcerename: true,
 		ip: true,
 		alts: '@u',
 		tournamentsmanagement: true,
 		roomdriver:true,
 	},
-	
-	{
-		symbol: '¥',
-		id: "boss",
-		name: "Bos",
-		inherit: '+',
-		jurisdiction: 'u',
-		announce: true,
-		warn: '\u2605u',
-		kick: true,
-		mute: '\u2605u',
-		lock: true,
-		forcerename: true,
-		timer: true,
-		modlog: true,
-		alts: '%u',
-		bypassblocks: 'u%@&~',
-		receiveauthmessages: true,
-		tournamentsmoderation: true,
-		tournamentsmanagement: true,
-		jeopardy: true,
-		joinbattle: true
-	},
-	
 	{
 		symbol: '%',
 		id: "driver",
@@ -355,6 +336,15 @@ exports.grouplist = [
 		tournamentsmanagement: true,
 		jeopardy: true,
 		joinbattle: true
+	},
+	{
+		symbol: '$',
+		id: "op",
+		name: "Operator",
+		inherit: '+',
+		warn:true,
+		mute:true,
+		
 	},
 	{
 		symbol: '+',
