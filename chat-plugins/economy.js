@@ -353,7 +353,7 @@ exports.commands = {
 	 		'<tr><td>Chat Room</td><td>Buys a chatroom for you to own (comes with a free welcome message)</td><td>35</td><td><button name="send" value="/buy chatroom">Chatroom!</button></td></tr>' +
 	 		'<tr><td>Trainer Card</td><td>Buys an infobox that will be viewable with a command such as /bt.</td><td>35</td><td><button name="send" value="/buy trainercard">Trainer Card!</button></td></tr>' +
 	 		'<tr><td>Custom Colour</td><td>Buys an custom colour for your name in the chat</td><td>40</td><td><button name="send" value="/buy customcolour">Custom Colour!</button></td></tr>' +
-	 		'<tr><td>Animated Avatar</td><td>Buys an animated avatar to be applied to your name (You supply, must be .gif format. Images larger than 80x80 may not show correctly.)</td><td>40</td><td><button name="send" value="/buy animatedavatar">Animated Avatar!></button></td></tr>' +
+	 		'<tr><td>Animated Avatar</td><td>Buys an animated avatar to be applied to your name (You supply, must be .gif format. Images larger than 80x80 may not show correctly.)</td><td>40</td><td><button name="send" value="/buy animatedavatar">Animated Avatar!</button></td></tr>' +
 	 		'<tr><td>Userlist Icon</td><td>Buys a userlist icon next to your name in 3 different rooms</td><td>100</td><td><button name="send" value="/buy userlisticon">Userlist Icon!</td></button></tr>' +
 	 		'<tr><td>Global Voice</td><td>Buys global voice (+). Must have a good chat presence. </td><td>100</td><td><button name="send" value="/buy globalvoice">Global Voice!</button></td></tr>' +
 	 		
