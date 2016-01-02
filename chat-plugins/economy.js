@@ -348,17 +348,17 @@ exports.commands = {
 	 		'<tr><td>Fix</td><td>Buys the ability to alter your current custom avatar/trainer card or userlist icon (don\'t buy if you have neither)</td><td>10</td><td><button name="send" value="/buy fix">Fix!</button></td></tr>' +
 	 		'<tr><td>Declare</td><td>You get the ability to have a message declared in the lobby. This can be used for league advertisement (not server)</td><td>15</td><td><button name="send" value="/buy declare">Declare!</td></tr>' +
 			'<tr><td>Poof</td><td>Buy a poof message to be added into the pool of possible poofs</td><td>20</td></tr>' +
-			'<tr><td>League Shop</td><td>Buys a shop for any room. (must be roomfounder)</td><td>20</td></tr>' +
-	 		'<tr><td>Custom Avatar</td><td>Buys a custom avatar to be applied to your name (You supply, must be .png format. Images larger than 80x80 may not show correctly.)</td><td>30</td></tr>' +
-	 		'<tr><td>Chat Room</td><td>Buys a chatroom for you to own (comes with a free welcome message)</td><td>35</td></tr>' +
-	 		'<tr><td>Trainer Card</td><td>Buys an infobox that will be viewable with a command such as /tailz.</td><td>35</td></tr>' +
-	 		'<tr><td>Custom Colour</td><td>Buys an custom colour for your name in the chat</td><td>40</td></tr>' +
-	 		'<tr><td>Animated Avatar</td><td>Buys an animated avatar to be applied to your name (You supply, must be .gif format. Images larger than 80x80 may not show correctly.)</td><td>40</td></tr>' +
-	 		'<tr><td>Userlist Icon</td><td>Buys a userlist icon next to your name in 3 different rooms</td><td>100</td></tr>' +
-	 		'<tr><td>Global Voice</td><td>Buys global voice (+). Must have a good chat presence. </td><td>100</td></tr>' +
+			'<tr><td>League Shop</td><td>Buys a shop for any room. (must be roomfounder)</td><td>20</td><td><button name="send" value="/buy leagueshop">League Shop!</td></tr>' +
+	 		'<tr><td>Custom Avatar</td><td>Buys a custom avatar to be applied to your name (You supply, must be .png format. Images larger than 80x80 may not show correctly.)</td><td>30</td><td><button name="send" value="/buy customavatar">Custom Avatar!</td></tr>' +
+	 		'<tr><td>Chat Room</td><td>Buys a chatroom for you to own (comes with a free welcome message)</td><td>35</td><td><button name="send" value="/buy chatroom">Chatroom!</td></tr>' +
+	 		'<tr><td>Trainer Card</td><td>Buys an infobox that will be viewable with a command such as /bt.</td><td>35</td><td><button name="send" value="/buy trainercard">Trainer Card!</td></tr>' +
+	 		'<tr><td>Custom Colour</td><td>Buys an custom colour for your name in the chat</td><td>40</td><td><button name="send" value="/buy customcolour">Custom Colour!</td></tr>' +
+	 		'<tr><td>Animated Avatar</td><td>Buys an animated avatar to be applied to your name (You supply, must be .gif format. Images larger than 80x80 may not show correctly.)</td><td>40</td><td><button name="send" value="/buy animatedavatar">Animated Avatar!</td></tr>' +
+	 		'<tr><td>Userlist Icon</td><td>Buys a userlist icon next to your name in 3 different rooms</td><td>100</td><td><button name="send" value="/buy userlisticon">Userlist Icon!</td></tr>' +
+	 		'<tr><td>Global Voice</td><td>Buys global voice (+). Must have a good chat presence. </td><td>100</td><td><button name="send" value="/buy globalvoice">Global Voice!</td></tr>' +
 	 		
 	 		
-	 		'</table><br />To buy an item from the shop, use /buy [item]. <br />Use /currencyhelp to view money-based commands.<br />All sales final, no refunds will be provided.</center>'
+	 		'</table><br />To buy an item from the shop, use /buy [item]. <br />Use /currencyhelp to view money-based commands. You may also click one of the buttons that are placed next to the price of a item to buy it.<br />All sales final, no refunds will be provided.</center>'
 	 	);
 	},
 
