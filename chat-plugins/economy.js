@@ -326,7 +326,7 @@ exports.commands = {
 					matched = true;
 					break;
 				case 'customcolour':
-					if (userMoney < prices[itemid]) return self.sendReply("You need " + (prices[itemid] - userMoney) + " more bucks to purchase a userlist icon.");
+					if (userMoney < prices[itemid]) return self.sendReply("You need " + (prices[itemid] - userMoney) + " more bucks to purchase a custom colour.");
 					writeMoney(user.userid, prices[itemid] * -1);
 					logTransaction(user.name + " has purchased a custom colour for " + prices[itemid] + " bucks.");
 					messageSeniorStaff(user.name + " has purchased a userlist icon design.");
