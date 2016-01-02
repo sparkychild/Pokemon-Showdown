@@ -15,6 +15,7 @@ var prices = {
 	"fix": 10,
 	"declare": 15,
 	"poof": 20,
+	"leagueshop": 20,
 	"customavatar": 30,
 	"animatedavatar": 40,
 	"customcolour": 40,
@@ -347,6 +348,7 @@ exports.commands = {
 	 		'<tr><td>Fix</td><td>Buys the ability to alter your current custom avatar/trainer card or userlist icon (don\'t buy if you have neither)</td><td>10</td></tr>' +
 	 		'<tr><td>Declare</td><td>You get the ability to have a message declared in the lobby. This can be used for league advertisement (not server)</td><td>15</td></tr>' +
 			'<tr><td>Poof</td><td>Buy a poof message to be added into the pool of possible poofs</td><td>20</td></tr>' +
+			'<tr><td>League Shop</td><td>Buys a league shop. (must be roomfounder)</td><td>20</td></tr>' +
 	 		'<tr><td>Custom Avatar</td><td>Buys a custom avatar to be applied to your name (You supply, must be .png format. Images larger than 80x80 may not show correctly.)</td><td>30</td></tr>' +
 	 		'<tr><td>Chat Room</td><td>Buys a chatroom for you to own (comes with a free welcome message)</td><td>35</td></tr>' +
 	 		'<tr><td>Trainer Card</td><td>Buys an infobox that will be viewable with a command such as /tailz.</td><td>35</td></tr>' +
