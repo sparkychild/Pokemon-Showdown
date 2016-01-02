@@ -346,14 +346,14 @@ exports.commands = {
 	 		'<tr><td>Custom Symbol</td><td>Buys a custom symbol to go in front of your name. (Temporary until restart)</td><td>5</td><td><button name="send" value="/buy customsymbol">Custom Symbol!</button></td></tr>' +
 	 		'<tr><td>League Room</td><td>Purchases a room for your league. May be deleted if league becomes inactive. (must have 5 members)</td><td>5</td><td><button name="send" value="/buy leagueroom">League Room!</button></td></tr>' +
 	 		'<tr><td>Fix</td><td>Buys the ability to alter your current custom avatar/trainer card or userlist icon (don\'t buy if you have neither)</td><td>10</td><td><button name="send" value="/buy fix">Fix!</button></td></tr>' +
-	 		'<tr><td>Declare</td><td>You get the ability to have a message declared in the lobby. This can be used for league advertisement (not server)</td><td>15</td><td><button name="send" value="/buy declare">Declare!</td></tr>' +
-			'<tr><td>Poof</td><td>Buy a poof message to be added into the pool of possible poofs</td><td>20</td><td><button name="send" value="/buy poof">Poof!</td></tr>' +
-			'<tr><td>League Shop</td><td>Buys a shop for any room. (must be roomfounder)</td><td>20</td><td><button name="send" value="/buy leagueshop">League Shop!</td></tr>' +
-	 		'<tr><td>Custom Avatar</td><td>Buys a custom avatar to be applied to your name (You supply, must be .png format. Images larger than 80x80 may not show correctly.)</td><td>30</td><td><button name="send" value="/buy customavatar">Custom Avatar!</td></tr>' +
-	 		'<tr><td>Chat Room</td><td>Buys a chatroom for you to own (comes with a free welcome message)</td><td>35</td><td><button name="send" value="/buy chatroom">Chatroom!</td></tr>' +
-	 		'<tr><td>Trainer Card</td><td>Buys an infobox that will be viewable with a command such as /bt.</td><td>35</td><td><button name="send" value="/buy trainercard">Trainer Card!</td></tr>' +
-	 		'<tr><td>Custom Colour</td><td>Buys an custom colour for your name in the chat</td><td>40</td><td><button name="send" value="/buy customcolour">Custom Colour!</td></tr>' +
-	 		'<tr><td>Animated Avatar</td><td>Buys an animated avatar to be applied to your name (You supply, must be .gif format. Images larger than 80x80 may not show correctly.)</td><td>40</td><td><button name="send" value="/buy animatedavatar">Animated Avatar!>/button></td></tr>' +
+	 		'<tr><td>Declare</td><td>You get the ability to have a message declared in the lobby. This can be used for league advertisement (not server)</td><td>15</td><td><button name="send" value="/buy declare">Declare!</button></td></tr>' +
+			'<tr><td>Poof</td><td>Buy a poof message to be added into the pool of possible poofs</td><td>20</td><td><button name="send" value="/buy poof">Poof!</button></td></tr>' +
+			'<tr><td>League Shop</td><td>Buys a shop for any room. (must be roomfounder)</td><td>20</td><td><button name="send" value="/buy leagueshop">League Shop!</button></td></tr>' +
+	 		'<tr><td>Custom Avatar</td><td>Buys a custom avatar to be applied to your name (You supply, must be .png format. Images larger than 80x80 may not show correctly.)</td><td>30</td><td><button name="send" value="/buy customavatar">Custom Avatar!</button></td></tr>' +
+	 		'<tr><td>Chat Room</td><td>Buys a chatroom for you to own (comes with a free welcome message)</td><td>35</td><td><button name="send" value="/buy chatroom">Chatroom!</button></td></tr>' +
+	 		'<tr><td>Trainer Card</td><td>Buys an infobox that will be viewable with a command such as /bt.</td><td>35</td><td><button name="send" value="/buy trainercard">Trainer Card!</button></td></tr>' +
+	 		'<tr><td>Custom Colour</td><td>Buys an custom colour for your name in the chat</td><td>40</td><td><button name="send" value="/buy customcolour">Custom Colour!</button></td></tr>' +
+	 		'<tr><td>Animated Avatar</td><td>Buys an animated avatar to be applied to your name (You supply, must be .gif format. Images larger than 80x80 may not show correctly.)</td><td>40</td><td><button name="send" value="/buy animatedavatar">Animated Avatar!></button></td></tr>' +
 	 		'<tr><td>Userlist Icon</td><td>Buys a userlist icon next to your name in 3 different rooms</td><td>100</td><td><button name="send" value="/buy userlisticon">Userlist Icon!</td></button></tr>' +
 	 		'<tr><td>Global Voice</td><td>Buys global voice (+). Must have a good chat presence. </td><td>100</td><td><button name="send" value="/buy globalvoice">Global Voice!</button></td></tr>' +
 	 		
