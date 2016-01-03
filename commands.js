@@ -62,7 +62,7 @@ auth: 'authority',
 	authority: function (target, room, user, connection) {
 		var rankLists = {};
 		var ranks = Object.keys(Config.groups);
-		for (let u in Users.usergroups) {
+		for (var u in Users.usergroups) {
 			var rank = Users.usergroups[u].charAt(0);
 			if (rank === ' ' || rank === '+') continue;
 			// In case the usergroups.csv file is not proper, we check for the server ranks.
