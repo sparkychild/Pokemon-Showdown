@@ -6,6 +6,7 @@ exports.parseEmoticons = parseEmoticons;
 
 var emotes = {
 	'#freewolf':'http://i.imgur.com/ybxWXiG.png',
+	'feelstea':'http://media.tumblr.com/68eb56721b0833c66c8a9542ed515594/tumblr_inline_mkj23fgNsZ1qz4rgp.gif',
 	'feelsbd':'http://i.imgur.com/YyEdmwX.png',
 	'feelsbm':'http://i.imgur.com/xwfJb2z.png',
 	'feelsbn':'http://i.imgur.com/wp51rIg.png',
