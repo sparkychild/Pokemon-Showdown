@@ -41,7 +41,7 @@ var cmds = {
 
 	add: 'set',
 	set: function (target, room, user, connection, cmd) {
-		if (!this.can('hotpatch')) return false;
+		if (!this.can('declare')) return false;
 		if (!target) return this.sendReply('|html|/ca set <em>User</em>, <em>URL</em> - Sets a user\'s custom avatar to the specified image.');
 		target = target.split(',');
 		if (target.length < 2)  return this.sendReply('|html|/ca set <em>User</em>, <em>URL</em> - Sets a user\'s custom avatar to the specified image.');
@@ -88,7 +88,7 @@ var cmds = {
 
 	remove: 'delete',
 	'delete': function (target, room, user, connection, cmd) {
-		if (!this.can('hotpatch')) return false;
+		if (!this.can('declare')) return false;
 		if (!target || !target.trim()) return this.sendReply('|html|/' + cmd + ' <em>User</em> - Deletes a user\'s custom avatar.');
 		target = Users.getExact(target) ? Users.getExact(target).name : target;
 		var avatars = Config.customavatars;
@@ -105,7 +105,7 @@ var cmds = {
 	
 	shift: 'move',
 	move: function (target, room, user, connection, cmd) {
-		if (!this.can('hotpatch')) return false;
+		if (!this.can('declare')) return false;
 		if (!target || !target.trim()) return this.sendReply('|html|/moveavatar <em>User 1</em>, <em>User 2</em> - Moves User 1\'s custom avatar to User 2.');
 		target = target.split(',');
 		if (target.length < 2) return this.sendReply('|html|/moveavatar <em>User 1</em>, <em>User 2</em> - Moves User 1\'s custom avatar to User 2.');
