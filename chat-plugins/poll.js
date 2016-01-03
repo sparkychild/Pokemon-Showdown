@@ -231,12 +231,12 @@ exports.commands = {
 
 	},
 	tierpoll: function(target, room, user) {
-		var tiers = ['Anything Goes', 'Random Triples Battle', 'Challenge Cup 1v1', 'Monotype', 'Ubers','Overused', 'Underused','Rarelyused','Neverused','Pu' ,'Random Battles','Catch And EvolveP', 'Eights', 'Gen One Random / 0MM', ];
+		var tiers = ['Anything Goes', 'Challenge Cup 1v1', 'Monotype', 'Ubers','Overused', 'Underused','Rarelyused','Neverused','Pu' ,'Random Battles','Catch And Evolve', '0MM', ];
 		this.parse('/poll new Next Tour?, ' + tiers);
        },
-       ompoll: function(target, room, user) {
-		var tiers = ['CAP', 'Balanced Hackmons', '1v1', 'Monotype', 'Tier Shift', 'PU', 'Inverse Battle', 'Almost Any Ability', 'STABmons', 'LC UU', 'Snowy OU'];
-		this.parse('/poll new Other Metas Tournament?, ' + tiers);
+       leaguepoll: function(target, room, user) {
+		var tiers = ['Monotype', 'Random Monotype', 'Challenge Cup 1v1', 'Eights', 'Tierpoll'];
+		this.parse('/poll new League tournament?, ' + tiers);
 	},
 
 	easytour: 'etour',
