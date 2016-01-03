@@ -55,29 +55,28 @@ var commands = exports.commands = {
 		this.sendReplyBox("Server version: <b>" + CommandParser.package.version + "</b>");
 	},
 
-	auth: 'authority',
+auth: 'authority',
 	stafflist: 'authority',
 	globalauth: 'authority',
 	authlist: 'authority',
 	authority: function (target, room, user, connection) {
-		var rankLists = {};
-		var ranks = Object.keys(Config.groups);
-		for (var u in Users.usergroups) {
-			var rank = Users.usergroups[u].charAt(0);
-			if (rank === ' ') continue;
+		let rankLists = {};
+		let ranks = Object.keys(Config.groups);
+		for (let u in Users.usergroups) {
+			let rank = Users.usergroups[u].charAt(0);
+			if (rank === ' ' || rank === '+') continue;
 			// In case the usergroups.csv file is not proper, we check for the server ranks.
 			if (ranks.indexOf(rank) >= 0) {
-				var name = Users.usergroups[u].substr(1);
+				let name = Users.usergroups[u].substr(1);
 				if (!rankLists[rank]) rankLists[rank] = [];
 				if (name) rankLists[rank].push(name);
 			}
 		}
 
-		var buffer = [];
-		Object.keys(rankLists).sort(function (a, b) {
+		let buffer = Object.keys(rankLists).sort(function (a, b) {
 			return (Config.groups[b] || {rank: 0}).rank - (Config.groups[a] || {rank: 0}).rank;
-		}).forEach(function (r) {
-			buffer.push((Config.groups[r] ? Config.groups[r].name + "s (" + r + ")" : r) + ":\n" + rankLists[r].sortBy(toId).join(", "));
+		}).map(function (r) {
+			return (Config.groups[r] ? Config.groups[r].name + "s (" + r + ")" : r) + ":\n" + rankLists[r].sortBy(toId).join(", ");
 		});
 
 		if (!buffer.length) buffer = "This server has no global authority.";
