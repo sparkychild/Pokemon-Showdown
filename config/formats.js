@@ -3608,7 +3608,7 @@ exports.Formats = [
 		ruleset: ['OU']
 	},
 	
-		name: "OU",
+		name: "League Format",
 		desc: [
 			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3521201/\">OU Metagame Discussion</a>",
 			"&bullet; <a href=\"https://www.smogon.com/dex/xy/tags/ou/\">OU Banlist</a>",
