@@ -3607,6 +3607,20 @@ exports.Formats = [
 		searchShow: false,
 		ruleset: ['OU']
 	},
+	
+		name: "OU",
+		desc: [
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3521201/\">OU Metagame Discussion</a>",
+			"&bullet; <a href=\"https://www.smogon.com/dex/xy/tags/ou/\">OU Banlist</a>",
+			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3553516/\">OU Viability Ranking</a>"
+		],
+		section: "Other Metagames",
+		
+		maxForcedLevel:100,
+
+		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
+		banlist: ['Uber', 'Soul Dew', 'Shadow Tag']
+	},
 	{
 		name: "Gen-NEXT OU",
 		section: "Other Metagames",
