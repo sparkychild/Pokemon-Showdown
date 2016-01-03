@@ -8,7 +8,7 @@
 */
 
 var permission = 'broadcast';
-var bluebutton = 'padding:2px; background-color:#0099FF; border:1px solid #0099FF; color:white';
+var bluebutton = 'padding:2px; background-color:white; border:1px solid black; color:black';
 
 var Poll = (function () {
 	function Poll(room, question, options) {
