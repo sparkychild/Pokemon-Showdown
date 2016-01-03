@@ -60,20 +60,20 @@ auth: 'authority',
 	globalauth: 'authority',
 	authlist: 'authority',
 	authority: function (target, room, user, connection) {
-		let rankLists = {};
-		let ranks = Object.keys(Config.groups);
+		var rankLists = {};
+		var ranks = Object.keys(Config.groups);
 		for (let u in Users.usergroups) {
-			let rank = Users.usergroups[u].charAt(0);
+			var rank = Users.usergroups[u].charAt(0);
 			if (rank === ' ' || rank === '+') continue;
 			// In case the usergroups.csv file is not proper, we check for the server ranks.
 			if (ranks.indexOf(rank) >= 0) {
-				let name = Users.usergroups[u].substr(1);
+				var name = Users.usergroups[u].substr(1);
 				if (!rankLists[rank]) rankLists[rank] = [];
 				if (name) rankLists[rank].push(name);
 			}
 		}
 
-		let buffer = Object.keys(rankLists).sort(function (a, b) {
+		var buffer = Object.keys(rankLists).sort(function (a, b) {
 			return (Config.groups[b] || {rank: 0}).rank - (Config.groups[a] || {rank: 0}).rank;
 		}).map(function (r) {
 			return (Config.groups[r] ? Config.groups[r].name + "s (" + r + ")" : r) + ":\n" + rankLists[r].sortBy(toId).join(", ");
