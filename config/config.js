@@ -283,7 +283,6 @@ exports.grouplist = [
 		roomdriver:true,
 		roomvoice:true,
 		tournamentsmanagement: true,
-		hotpatch:true
 	},
 	{
 		symbol: '\u2605',
