@@ -31,7 +31,7 @@ const MESSAGE_COOLDOWN = 5 * 60 * 1000;
 const MAX_PARSE_RECURSION = 10;
 
 const VALID_COMMAND_TOKENS = '/!';
-
+const parseEmoticons = require('./chat-plugins/emoticons').parseEmoticons;
 const BROADCAST_TOKEN = '!';
 
 var fs = require('fs');
