@@ -283,7 +283,6 @@ exports.grouplist = [
 		roomdriver:true,
 		roomvoice:true,
 		tournamentsmanagement: true,
-		broadcast:true
 	},
 	{
 		symbol: '\u2605',
@@ -315,7 +314,6 @@ exports.grouplist = [
 		alts: '@u',
 		tournamentsmanagement: true,
 		roomdriver:true,
-		broadcast:true
 	},
 	{
 		symbol: '%',
@@ -338,7 +336,6 @@ exports.grouplist = [
 		tournamentsmanagement: true,
 		jeopardy: true,
 		joinbattle: true
-		broadcast:true
 	},
 	{
 		symbol: '$',
@@ -347,7 +344,6 @@ exports.grouplist = [
 		inherit: '+',
 		warn:true,
 		mute:true,
-		broadcast:true
 	},
 	{
 		symbol: '+',
@@ -359,7 +355,6 @@ exports.grouplist = [
 		tournaments:true,
 		tournamentsmoderation:true,
 		tournamentsmanagement: true,
-		broadcast:true
 	},
 	
 	{
