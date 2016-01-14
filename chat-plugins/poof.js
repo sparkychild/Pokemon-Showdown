@@ -9,6 +9,7 @@ const messages = [
 	"used Explosion!",
 	"was swallowed up by the Earth!",
 	"was eaten by Lex!",
+	"gooottttttt dunked on!!! if they're really friends... they won't come back!",
 	"was sucker punched by Absol!",
 	"has left the building.",
 	"got lost in the woods!",
