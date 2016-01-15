@@ -343,6 +343,7 @@ exports.grouplist = [
 		name: "Operator",
 		inherit: '+',
 		warn:true,
+		hourmute:true,
 		mute:true,
 	},
 	{
