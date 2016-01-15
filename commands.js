@@ -13,7 +13,7 @@
  * @license MIT license
  */
 
- crypto = require('crypto');
+var crypto = require('crypto');
 var fs = require('fs');
 
 const MAX_REASON_LENGTH = 300;
