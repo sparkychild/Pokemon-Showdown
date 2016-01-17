@@ -785,7 +785,6 @@ Tournament = (function () {
 				if (firstMoney > 1) firstBuck = 'bucks';
 				if (secondMoney > 1) secondBuck = 'bucks';
 				this.room.add('|raw|<b><font color="' + hashColor(winner)+'">' + Tools.escapeHTML(winner) + '</font> has won <font color=#24678d>' + firstMoney + '</font> ' + firstBuck + ' for winning the tournament!</b>');
-				if (runnerUp) this.room.add('|raw|<b><font color="' + hashColor(runnerUp) + '">' + Tools.escapeHTML(runnerUp) + '</font> has also won <font color=#24678d>' + secondMoney + '</font> ' + secondBuck + ' for coming in second! Trollololololol</b>');
 				writeMoney(toId(winner), firstMoney, function() {
 					readMoney(toId(winner), function(newMoney) {
 						logTransaction(winner + ' has won ' + firstMoney + ' ' + firstBuck + ' from a tournament in ' + self.room.title + '. They now have ' + newMoney);
