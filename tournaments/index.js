@@ -767,13 +767,13 @@ Tournament = (function () {
 				}
 			}
 
-			var firstMoney = false;
+			var firstMoney = true;
 			var secondMoney = false;
 			var firstBuck;
 			var secondBuck;
 
 			if (this.room.isOfficial && tourSize >= 3) {
-				firstMoney = Math.round(tourSize/3);
+				firstMoney = Math.round(tourSize/2);
 				secondMoney = Math.round(firstMoney/2);
 				firstBuck = 'buck';
 				secondBuck = 'buck';
