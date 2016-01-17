@@ -767,7 +767,7 @@ Tournament = (function () {
 				}
 			}
 
-			var firstMoney = true;
+			var firstMoney = false;
 			var secondMoney = false;
 			var firstBuck;
 			var secondBuck;
