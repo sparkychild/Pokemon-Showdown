@@ -341,6 +341,7 @@ exports.grouplist = [
 		symbol: '$',
 		id: "op",
 		name: "Operator",
+		jurisdiction: 'u',
 		inherit: '+',
 		warn:true,
 		hourmute:true,
