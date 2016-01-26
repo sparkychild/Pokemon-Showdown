@@ -9,3 +9,5 @@ exports.commands = {
 		}
 		if (!this.can('warn', targetUser, room)) return false;
 		targetUser.popup("You have a tournament match to play. ");
+	}
+};
