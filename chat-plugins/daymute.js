@@ -11,9 +11,12 @@ exports.commands = {
 		var targetUser = this.targetUser;
 		if (!targetUser) return this.sendReply('User "' + this.targetUsername + '" not found.');
 
-		if (((targetUser.mutedRooms[room.id] && (targetUser.muteDuration[room.id] || 0) >= 50 * 60 * 1000) || targetUser.locked) && !target) {
-			var problem = ' but was already ' + (!targetUser.connected ? 'offline' : targetUser.locked ? 'locked' : 'muted');
-			return this.privateModCommand('(' + targetUser.name + ' would be muted by ' + user.name + problem + '.)');
+		if ((room.isMuted(targetUser) && !canBeMutedFurther) || targetUser.locked || !targetUser.connected) {
+			var problem = " but was already " + (!targetUser.connected ? "offline" : targetUser.locked ? "locked" : "licked");
+			if (!target) {
+				return this.privateModCommand("(" + targetUser.name + " would be muted by " + user.name + problem + ".)");
+			}
+			return this.addModCommand("" + targetUser.name + " would be muted by " + user.name + problem + "." + (target ? " (" + target + ")" : ""));
 		}
 
 		targetUser.popup(user.name + ' has muted you for 24 hours. ' + target);
