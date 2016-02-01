@@ -8,6 +8,7 @@ exports.commands = {
 			return this.sendReply("User " + this.targetUsername + " not found.");
 		}
 		if (!this.can('warn', targetUser, room)) return false;
+		var msg = "reminded of a tournament match by " + user.name + (target ? " (" + target + ")" : "") + ".";
 		targetUser.popup("You have a tournament match to play. ");
 	}
 };
