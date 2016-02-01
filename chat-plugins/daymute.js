@@ -1,3 +1,4 @@
+var fs = require('fs');
 exports.commands = {
  
  dm: 'daymute',
