@@ -1132,7 +1132,7 @@ roomstaff: 'roomauth',
 			return this.errorReply("The reason is too long. It cannot exceed " + MAX_REASON_LENGTH + " characters.");
 		}
 		
-		var muteDuration = ((cmd === 'dm' || cmd === 'daymute') ? DAYMUTE_LENGTH : MUTE_LENGTH);
+		var muteDuration = ((cmd === 'dm' || cmd === 'daymute') ? DAYMUTE_LENGTH : DAYMUTE_LENGTH);
 		if (!this.can('mute', targetUser, room)) return false;
 		var canBeMutedFurther = ((room.getMuteTime(targetUser) || 0) <= (muteDuration * 5 / 6));
 		if ((room.isMuted(targetUser) && !canBeMutedFurther) || targetUser.locked || !targetUser.connected) {
