@@ -24,7 +24,7 @@ exports.commands = {
 		var alts = targetUser.getAlts();
 		if (alts.length) this.addModCommand("" + targetUser.name + "'s alts were also muted: " + alts.join(", "));
 
-		room.mute(targetUser, muteDuration, true);;
+		targetUser.mute(room.id, 24 * 60 * 60 * 1000, true);
 	},
 
 };
