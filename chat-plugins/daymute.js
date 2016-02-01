@@ -5,8 +5,8 @@ exports.commands = {
 	daymute: function (target, room, user) {
 		if (!target) return this.parse('/help daymute');
 		if (!this.can('mute', targetUser, room)) return false;
-		if ((user.locked || user.mutedRooms[room.id]) && !user.can('bypassall')) return this.sendReply('You cannot do this while unable to talk.');
-
+                if (room.isMuted(user) && !user.can('bypassall')) return this.errorReply("You cannot do this while unable to talk.");
+		
 		target = this.splitTarget(target);
 		var targetUser = this.targetUser;
 		if (!targetUser) return this.sendReply('User "' + this.targetUsername + '" not found.');
