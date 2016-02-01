@@ -19,6 +19,7 @@ var fs = require('fs');
 const MAX_REASON_LENGTH = 300;
 const MUTE_LENGTH = 7 * 60 * 1000;
 const HOURMUTE_LENGTH = 60 * 60 * 1000;
+const DAYMUTE_LENGTH = 1440;
 
 var commands = exports.commands = {
 	
@@ -1130,6 +1131,17 @@ roomstaff: 'roomauth',
 		if (target.length > MAX_REASON_LENGTH) {
 			return this.errorReply("The reason is too long. It cannot exceed " + MAX_REASON_LENGTH + " characters.");
 		}
+		
+		var muteDuration = ((cmd === 'dm' || cmd === 'daymute') ? DAYMUTE_LENGTH : MUTE_LENGTH);
+		if (!this.can('mute', targetUser, room)) return false;
+		if ((room.isMuted(targetUser) && !canBeMutedFurther) || targetUser.locked || !targetUser.connected) {
+			var problem = " but was already " + (!targetUser.connected ? "offline" : targetUser.locked ? "locked" : "licked");
+			if (!target) {
+				return this.privateModCommand("(" + targetUser.name + " would be muted by " + user.name + problem + ".)");
+			}
+			return this.addModCommand("" + targetUser.name + " would be muted by " + user.name + problem + "." + (target ? " (" + target + ")" : ""));
+		}
+	        }
 
 		var muteDuration = ((cmd === 'hm' || cmd === 'hourmute') ? HOURMUTE_LENGTH : MUTE_LENGTH);
 		if (!this.can('mute', targetUser, room)) return false;
@@ -1157,6 +1169,13 @@ roomstaff: 'roomauth',
 		this.run('mute');
 	},
 	hourmutehelp: ["/hourmute OR /hm [username], [reason] - Mutes a user with reason for an hour. Requires: % @ # & ~"],
+	
+	dm: 'daymute',
+	daymute: function (target) {
+		if (!target) return this.parse('/help daymute');
+		this.run('mute');
+	},
+	daymutehelp: ["/daymute OR /dm [username], [reason] - Mutes a user with reason for an day. Requires: % @ # & ~"],
 
 	um: 'unmute',
 	unmute: function (target, room, user) {
