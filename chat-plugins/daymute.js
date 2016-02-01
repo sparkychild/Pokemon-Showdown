@@ -22,3 +22,5 @@ exports.commands = {
 
 		targetUser.mute(room.id, 24 * 60 * 60 * 1000, true);
 	},
+
+};
