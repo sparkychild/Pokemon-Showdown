@@ -286,7 +286,7 @@ exports.grouplist = [
 	},
 	{
 		symbol: '🌹',
-		id: "roser",
+		id: "rose",
 		name: "Rose",
 		inherit: '@',
 		jurisdiction: '@u',
