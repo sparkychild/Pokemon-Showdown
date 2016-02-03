@@ -285,7 +285,7 @@ exports.grouplist = [
 		tournamentsmanagement: true,
 	},
 	{
-		symbol: '🌹',
+		symbol: '⚘',
 		id: "rose",
 		name: "Rose",
 		inherit: '@',
