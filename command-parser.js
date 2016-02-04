@@ -31,11 +31,12 @@ const MESSAGE_COOLDOWN = 5 * 60 * 1000;
 const MAX_PARSE_RECURSION = 10;
 
 const VALID_COMMAND_TOKENS = '/!';
-const parseEmoticons = require('./chat-plugins/emoticons').parseEmoticons;
+
 const BROADCAST_TOKEN = '!';
 
 var fs = require('fs');
 var path = require('path');
+const parseEmoticons = require('./chat-plugins/emoticons').parseEmoticons;
 
 /*********************************************************
  * Load command files
@@ -531,6 +532,8 @@ var parse = exports.parse = function (message, room, user, connection, levelsDee
 	}
 
 	message = canTalk.call(context, user, room, connection, message);
+	
+	if (parseEmoticons(message, room, user)) return;
 	
         if (nightclub[room.id]) {
 	room.addRaw('<div class="nightclub"><font size="3"><small>' + nightclubify((room.auth ? (room.auth[user.userid] || user.group) : user.group)) + "</small><b>" + nightclubify(Tools.escapeHTML(user.name) + ":") + "</b> " + nightclubify((message)) + '</font></div>');
