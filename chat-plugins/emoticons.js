@@ -5,8 +5,8 @@ var color = require('../config/color');
 exports.parseEmoticons = parseEmoticons;
 
 var emotes = {
-	'#feelscri':'http://i.imgur.com/JEMjW4f.jpg',
-	'#feelspac':'http://i.imgur.com/Dc9DBUz.png',
+	'feelscri':'http://i.imgur.com/JEMjW4f.jpg',
+	'feelspac':'http://i.imgur.com/Dc9DBUz.png',
 	'#freewolf':'http://i.imgur.com/ybxWXiG.png',
 	'feelstea':'http://media.tumblr.com/68eb56721b0833c66c8a9542ed515594/tumblr_inline_mkj23fgNsZ1qz4rgp.gif',
 	'feelsbd':'http://i.imgur.com/YyEdmwX.png',
