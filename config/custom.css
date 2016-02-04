@@ -23,7 +23,7 @@
     background:url("http://pokedream.com/pokedex/images/mini/179.gif") no-repeat right
 }    
 body {
-    background: url(http://i.imgur.com/M72aRlL.gif?1) no-repeat;
+    background: url(http://pre03.deviantart.net/6462/th/pre/f/2013/021/b/3/darkrai_used_dark_void_by_absolotad-d5sa71f.jpg) no-repeat;
     background-color: #A9ABBD;
   }
 
@@ -35,7 +35,7 @@ body {
   }
 
 .header{
-    background:#FFCC66 url("http://i.imgur.com/tifgwC9.png") no-repeat;
+    background:#330031 url("http://i.imgur.com/tifgwC9.png") no-repeat;
 }
 
 .nightclub {
@@ -44,110 +44,115 @@ body {
 }
 
 .userlist{
-    background:#FFCC66;
+    background:#330031;
+    border-color: maroon;
+    color: maroon;
 }
 
 .chat-log {
-    background: #ffffff url("http://vignette2.wikia.nocookie.net/pokemon/images/a/a5/181Ampharos_Mega_Dream.png/revision/latest?cb=20140311082150") top right no-repeat;
-    border-bottom: 1px solid #000000;
-    border-left: 1px solid #000000;
+    color: white;
+    background: #000000 url("http://vignette2.wikia.nocookie.net/pokemon/images/a/a5/181Ampharos_Mega_Dream.png/revision/latest?cb=20140311082150") top right no-repeat;
+    border-bottom: 3px solid maroon;
+    border-left: 3px solid maroon;
 }
 
 .pm-log{
-    background:#ffcc66;
+    background:#330031;
+    color: white;
 }
 
 .pm-window h3{
-    background: #ffcc66 url("http://pldh.net/media/pokecons_action/179.gif") bottom right no-repeat;
+    background: #330031 url("http://pldh.net/media/pokecons_action/179.gif") bottom right no-repeat;
     background-position: 200px;
-    color:#000000;
+    color:#ffffff;
 }
 
 .pm-window h3:hover {
-    color:#ffcc66;
+    color:#ffffff;
     background: #000000 ;
   }
 
 .pm-window.focused h3, .pm-window.focused h3:hover {
 	background: black url("http://pldh.net/media/pokecons_action/179.gif") bottom right no-repeat;
     background-position: 200px;
-	color:#ffcc66;
+	color:#ffffff;
 }
 
 .pm-log-add{
-    background:#ffcc66 ;
+    background:#330031 ;
 }
 
 .tabbar a.button.cur, .tabbar a.button.cur:hover {
-    background: #FFCC66;
-      border-color:#000;
+    background: #330031;
+      border-color: maroon;
     color: #fff;
   }
 
 .tabbar a.button {
-    background:#FFCC66;
-    color:#000;
-    border-color:#000000;
+    background:#000000;
+    color:#fff;
+    border-color:maroon;
 }
 
 .maintabbarbottom {
     background: #000000;
-    border-color:#FFCC66;
+    border-color:maroon;
   }
 
 .teamlist{
-    background:#FFCC66;
+    background:#330031;
 }
 
 .pad{
-    background:#FFCC66;
+    background:#330031;
 }
 
 .team{
     background:black;
-    color:#FFCC66;
+    color:#ffffff;
 }
 
 .teamchart{
-    background:#FFCC66;
+    background:#330031;
 }
 
 .teamchart, .teamchart li{
-    background:#FFCC66;
+    background:#330031;
 }
 
 .battle-log{
-    background:#FFCC66;
+    background:#330031;
 }
 
 .ps-room{
-     background:url("http://i.imgur.com/M72aRlL.gif?1");
+     background:url("http://pre03.deviantart.net/6462/th/pre/f/2013/021/b/3/darkrai_used_dark_void_by_absolotad-d5sa71f.jpg");
 }
 
 .ps-room.ps-room-opaque{
-    background:url("http://i.imgur.com/TQ2VsWy.png");
+    background:url("http://pre03.deviantart.net/6462/th/pre/f/2013/021/b/3/darkrai_used_dark_void_by_absolotad-d5sa71f.jpg");
 }
 
 .ps-room .battle-controls{
-    background:#FFCC66;
+    background:#330031;
 }
 
 .battle-log h2{
     background:black;
-    color:#FFCC66;
+    color:#ffffff;
 }
 
 .ps-room .battle-log-add{
-    background:#FFCC66;
+    background:#330031;
 }
 
 .rightbar, .leftbar{
-    background:#FFCC66;
-    color:black;
+    background:#330031;
+    color:white;
 }
 
 .ps-popup{
-    background:#FFCC66;
+    background:#330031;
+    color: maroon;
 }
 
  .backdrop:before{
@@ -156,24 +161,23 @@ body {
     background-size: cover;
   }
   
-  .chat-log-add{
-  	background:#FFCC66;
+ .chat-log-add{
+  	background:#330031;
   }
   
- 
-  }
+
 
 .mainmenufooter a {
-    color: #000000;
+    color: maroon;
     text-shadow: 0px 0px 1px #474747, 0px 0px 1px #474747, 0px 0px 1px #474747;
 }
 
 .mainmenufooter a:hover {
-    color: #FFCC66;
+    color: #ffffff;
 }
 
 .menugroup .button {
-    background: #FFCC66;
+    background: #330031;
         box-sizing: border-box;
     font-size: 10pt;
     font-family: Verdana,Helvetica,Arial,sans-serif;
@@ -184,17 +188,18 @@ body {
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    text-shadow: 0px -1px 0px #0F1923;
     border-radius: 5px;
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(255, 255, 255, 0.8) inset;
-    color: #474747;
+    color: maroon;
     border: 3px solid #474747;
 }
   
 .menugroup button.big {
     font-size: 12pt;
+    color: white;
   }
   
 .menugroup .button:hover {
-    background: #FFCC66;
+    background: #330031;
+    color: white;
   }
