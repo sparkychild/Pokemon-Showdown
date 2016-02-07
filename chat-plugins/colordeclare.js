@@ -7,7 +7,7 @@ exports.commands = {
 	gdeclare: function (target, room, user, connection, cmd) {
 		if (!target) return this.parse('/help gdeclare');
 		if (!this.can('declare')) return false;
-		if ((user.locked || user.mutedRooms[room.id]) && !user.can('bypassall')) return this.sendReply('You cannot do this while unable to talk.');
+		if (room.isMuted(user) && !user.can('bypassall')) return this.errorReply("You cannot do this while unable to talk.");
 
 		var roomName = (room.isPrivate) ? 'a private room' : room.id;
 		var colour = cmd.substr(8) || 'blue';
@@ -25,7 +25,7 @@ exports.commands = {
 	declarered: function (target, room, user, connection, cmd) {
 		if (!target) return this.parse('/help declare');
 		if (!this.can('declare', null, room)) return false;
-		if ((user.locked || user.mutedRooms[room.id]) && !user.can('bypassall')) return this.sendReply('You cannot do this while unable to talk.');
+		if (room.isMuted(user) && !user.can('bypassall')) return this.errorReply("You cannot do this while unable to talk.");
 
 		room.addRaw('<div class="broadcast-' + cmd.substr(7) + '"><b>' + target + '</b></div>');
 		room.update();
@@ -35,7 +35,7 @@ exports.commands = {
 	pdeclare: function (target, room, user, connection, cmd) {
 		if (!target) return this.parse('/help declare');
 		if (!this.can('declare', null, room)) return false;
-		if ((user.locked || user.mutedRooms[room.id]) && !user.can('bypassall')) return this.sendReply('You cannot do this while unable to talk.');
+		if (room.isMuted(user) && !user.can('bypassall')) return this.errorReply("You cannot do this while unable to talk.");
 
 		room.addRaw('<div class="broadcast-purple"><b>' + target + '</b></div>');
 		room.update();
@@ -49,7 +49,7 @@ exports.commands = {
 	declaremod: function (target, room, user) {
 		if (!target) return this.sendReply('/declaremod [message] - Also /moddeclare and /modmsg');
 		if (!this.can('declare', null, room)) return false;
-		if ((user.locked || user.mutedRooms[room.id]) && !user.can('bypassall')) return this.sendReply('You cannot do this while unable to talk.');
+		if (room.isMuted(user) && !user.can('bypassall')) return this.errorReply("You cannot do this while unable to talk.");
 
 		this.privateModCommand('|raw|<div class="broadcast-red"><b><font size=1><i>Private Auth (Driver +) declare from ' + user.name + '<br /></i></font size>' + target + '</b></div>');
 		room.update();
