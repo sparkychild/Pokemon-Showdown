@@ -31,7 +31,7 @@ var emotes = {
 	'funnylol':'http://i.imgur.com/SlzCghq.png',
 	'hmmface':'http://i.imgur.com/Z5lOwfZ.png',
 	'noface':'http://i.imgur.com/H744eRE.png',
-	'Obama':'http://i.imgur.com/rBA9M7A.png',
+	'feelsdean':'http://i.imgur.com/PJubQO2.png',
 	'oshet':'http://i.imgur.com/yr5DjuZ.png',
 	'Sanic':'http://i.imgur.com/Y6etmna.png',
 	'wtfman':'http://i.imgur.com/kwR8Re9.png',
