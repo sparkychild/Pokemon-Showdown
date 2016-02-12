@@ -1,3 +1,10 @@
+#lobby-userlist-user-wndo, #staff-userlist-user-wndo, #wifi-userlist-user-wndo, #luxmusic-userlist-user-wndo, #theunityleague-userlist-user-wndo, #gamescorner-userlist-user-wndo, #roleplaying-userlist-user-wndo, #thegenesisleague-userlist-user-wndo, #thefadedleague-userlist-user-wndo, #adl-userlist-user-wndo {
+      background:url("http://pokedream.com/pokedex/images/mini/007.gif") no-repeat right
+}
+#pm-log-user-wndo {
+    background:#b3ffff url(http://i.imgur.com/ePlIHY9.gif) no-repeat right
+}
+
 body {
     background: url(http://i.imgur.com/M72aRlL.gif?1) no-repeat;
     background-color: #A9ABBD;
