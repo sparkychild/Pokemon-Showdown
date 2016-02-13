@@ -255,7 +255,6 @@ exports.grouplist = [
 		editroom: true,
 		potd: true,
 		disableladder: true,
-		globalonly: false,
 		roommod:true,
 		roomdriver:true,
 		roomvoice:true,
