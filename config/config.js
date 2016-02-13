@@ -264,9 +264,7 @@ exports.grouplist = [
 		tournamentsmanagement: true,
 		ip:false
 	},
-	        
-		
-	},
+
 	{
 		symbol: '&',
 		id: "leader",
