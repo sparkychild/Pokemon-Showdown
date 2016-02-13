@@ -243,6 +243,7 @@ exports.grouplist = [
 		symbol: '∆',
 		id: "dev",
 		name: "Developer",
+		jurisdiction: 'u',
 		globalonly: true
 		roomowner: true,
 		roommod: true,
