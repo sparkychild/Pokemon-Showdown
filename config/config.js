@@ -244,7 +244,7 @@ exports.grouplist = [
 		id: "dev",
 		name: "Developer",
 		jurisdiction: 'u',
-		globalonly: true
+		globalonly: false,
 		roomowner: true,
 		roommod: true,
 		roomdriver: true,
