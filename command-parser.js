@@ -195,6 +195,7 @@ function canTalk(user, room, connection, message, targetUser) {
 
 	return true;
 }
+};
 
 var Context = exports.Context = (function () {
 	function Context(options) {
