@@ -3601,3 +3601,138 @@ exports.BattleScripts = {
 		return pokemon;
 	}
 };
+
+randomSeasonalStaffTeam: function (side) {
+		var team = [];
+		var variant = this.random(2);
+		// Hardcoded sets of the available Pokémon.
+		var sets = {
+			'~Kokonoe-san': {
+				species: 'Keldeo', ability: 'Trace', item: 'Scarf', gender: 'F',
+				moves: ['secretsword', 'voltswitch', ['glaciate', 'attract'][this.random(2)]],
+				baseSignatureMove: 'steameruption', signatureMove: "Koko's Statement",
+				evs: {hp:4, spa:252, spe:252}, nature: 'Modest'
+			},
+			'∆Wando': {
+				species: 'Gyarados-mega', ability: 'Moxie', item: 'Focus Sash', gender: 'M',
+				moves: ['swordsdance', 'crunch', ['extremespeed', 'lick'][this.random(2)]],
+				baseSignatureMove: 'explosion', signatureMove: "lolrip",
+				evs: {hp:4, atk:252, spe:252}, nature: 'Adamant'
+			},
+			'♅S♡phiе': {
+				species: 'Bisharp', ability: 'Huge Power', item: 'Life Orb', gender: 'F',
+				moves: ['suckerpunch', 'meteormash', ['u-turn', 'celebrate'][this.random(2)]],
+				baseSignatureMove: 'knockoff', signatureMove: "Get Danked On",
+				evs: {atk:252, spd:4, spe:252}, nature: 'Jolly'
+			},
+			'@Hanna Scope': {
+				species: 'Pinsir', ability: 'Anger Point', item: 'Pinsirite', gender: 'F',
+				moves: ['submission', 'knockoff', ['revenge', 'quash'][this.random(2)]],
+				baseSignatureMove: 'return', signatureMove: "The Faded Rose",
+				evs: {atk:252, spd:4, spe:252}, nature: 'Jolly'
+			},
+			'%BradderstheEpic': {
+				species: 'Scizor-Mega', ability: 'Adaptability', item: 'Choice Band', gender: 'M',
+				moves: ['knockoff', 'u-turn', ['aquajet', 'metronome'][this.random(2)]],
+				baseSignatureMove: 'bulletpunch', signatureMove: "Titanium Chidori",
+				evs: {hp:248, atk:252, def:8}, nature: 'adamant'
+			},
+			'%Timebleweed': {
+				species: 'Mamoswine', ability: 'Thick Fat', item: 'Life Orb', gender: 'M',
+				moves: ['iciclecrash', 'slackoff', ['rockslide', 'peck'][this.random(2)]],
+				baseSignatureMove: 'precipiceblades', signatureMove: "Ancient Tremor",
+				evs: {hp:4, atk:252, spe:252}, nature: 'Adamant'
+			},
+			'$Omega Onkey': {
+				species: 'Victini', ability: 'Desolate Land', item: (variant === 0 ? ['Life Orb', 'Charcoal', 'Leftovers'][this.random(3)] : ['Life Orb', 'Choice Scarf', 'Leftovers'][this.random(3)]), gender: 'M',
+				moves: (variant === 0 ? ['thousandarrows', 'bolt strike', 'shiftgear', 'dragonascent', 'closecombat', 'substitute'] : ['thousandarrows', 'bolt strike', 'dragonascent', 'closecombat']),
+				baseSignatureMove: 'vcreate', signatureMove: "V-Generate",
+				evs: {hp:4, atk:252, spe:252}, nature: 'Jolly'
+			},
+			'$Unity Case': {
+				species: 'Meloetta', ability: 'Serene Grace', item: '', gender: 'F',
+				moves: ['lunardance', 'fierydance', 'perishsong', 'petaldance', 'quiverdance'],
+				baseSignatureMove: 'relicsong', signatureMove: "Relic Song Dance",
+				evs: {hp:4, atk:252, spa:252}, nature: 'Quiet'
+			},
+			'+Chaotic': {
+				species: 'Charizard', ability: 'Desolate Land', item: 'Choice Specs', gender: 'M',
+				moves: ['fireblast', ['airslash', 'gust'][this.random(2)], 'solarbeam'],
+				baseSignatureMove: 'ominouswind', signatureMove: "Chaotic Winds",
+				evs: {hp:4, spa:252, spe:252}, nature: 'Timid'
+			},
+			'+Alterbald': {
+				species: 'Heracross', ability: 'Moxie', item: 'Choice Scarf', gender: 'M',
+				moves: ['closecombat', ['megahorn', 'doubleteam'][this.random(2)], 'stoneedge'],
+				baseSignatureMove: 'bravebird', signatureMove: "RavenClaw",
+				evs: {hp:4, atk:252, spe:252}, nature: 'Jolly'
+			},
+			'+Unity Seth': {
+				species: 'Honchkrow', ability: 'Desolate Land', item: 'Life Orb', gender: 'F',
+				moves: ['sacredfire', ['bravebird', 'punishment', 'flamecharge'][this.random(3)], 'roost'],
+				baseSignatureMove: 'firespin', signatureMove: "Blazing Star - Ten Evil Stars",
+				evs: {atk:252, spa:4, spe:252}, nature: 'Quirky'
+			},
+				'Just a Lucario': {
+				species: 'Lucario', ability: 'Protean', item: 'Focus Sash', gender: 'M',
+				moves: ['swordsdance', 'extremespeed', ['meteormash', 'splash'][this.random(2)]],
+				baseSignatureMove: 'closecombat', signatureMove: "Deez Paws",
+				evs: {atk:252, spd:4, spe:252}, nature: 'Adamant'
+			},
+				'Random Strategy': {
+				species: 'Gengar', ability: 'Sheer Force', item: 'life orb', gender: 'F',
+				moves: ['darkvoid', 'darkpulse', ['tickle', 'shadowball'][this.random(2)]],
+				baseSignatureMove: 'sludgewave', signatureMove: "BioHazards",
+				evs: {spa:252, spd:4, spe:252}, nature: 'Timid'
+			},
+				'Glacia': {
+				species: 'Glaceon', ability: 'Refrigerate', item: 'choice scarf', gender: 'F',
+				moves: ['submission', 'knockoff', ['revenge', 'quash'][this.random(2)]],
+				baseSignatureMove: 'boomburst', signatureMove: "The Glacia Clash",
+				evs: {spa:252, spd:4, spe:252}, nature: 'Timid'
+			},
+				'Young Fabio': {
+				species: 'Ampharos', ability: 'Contrary', item: 'Ampharosite', gender: 'M',
+				moves: ['thunder', 'icebeam', ['sludgewave', 'tickle'][this.random(2)]],
+				baseSignatureMove: 'dracometeor', signatureMove: "Lux",
+				evs: {hp:252, spa:252, spd:4}, nature: 'Timid'
+			},
+				'Ryan': {
+				species: 'Shuckle', ability: 'Contrary', item: 'Leftovers', gender: 'M',
+				moves: ['toxic', 'rest', ['infestation', 'finalgambit'][this.random(2)]],
+				baseSignatureMove: 'shellsmash', signatureMove: "EAT IT UP",
+				evs: {atk:252, spd:4, spe:252}, nature: 'Jolly'
+			},
+		};
+		// Generate the team randomly.
+		var pool = Object.keys(sets).randomize();
+		var ranks = {'~':'admins', '&':'leaders', '@':'mods', '%':'drivers', '+':'voices'};
+		var levels = {'~':99, '&':97, '@':96, '%':96, '+':95};
+		for (var i = 0; i < 6; i++) {
+			var rank = pool[i].charAt(0);
+			var set = sets[pool[i]];
+			set.level = levels[rank];
+			set.name = pool[i];
+			if (!set.ivs) {
+				set.ivs = {hp:31, atk:31, def:31, spa:31, spd:31, spe:31};
+			} else {
+				for (var iv in {hp:31, atk:31, def:31, spa:31, spd:31, spe:31}) {
+					set.ivs[iv] = set.ivs[iv] ? set.ivs[iv] : 31;
+				}
+			}
+			// Assuming the hardcoded set evs are all legal.
+			if (!set.evs) set.evs = {hp:84, atk:84, def:84, spa:84, spd:84, spe:84};
+			set.moves = set.moves.sample(3).concat(set.baseSignatureMove);
+			team.push(set);
+		}
+
+		// Check for Illusion.
+		if (team[5].name === '&Slayer95') {
+			var temp = team[4];
+			team[4] = team[5];
+			team[5] = temp;
+		}
+
+		return team;
+	}
+};
