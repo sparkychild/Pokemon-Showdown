@@ -3649,11 +3649,11 @@ randomSeasonalStaffTeam: function (side) {
 				baseSignatureMove: 'vcreate', signatureMove: "V-Generate",
 				evs: {hp:4, atk:252, spe:252}, nature: 'Jolly'
 			},
-			'$Unity Case': {
-				species: 'Meloetta', ability: 'Serene Grace', item: '', gender: 'F',
-				moves: ['lunardance', 'fierydance', 'perishsong', 'petaldance', 'quiverdance'],
-				baseSignatureMove: 'relicsong', signatureMove: "Relic Song Dance",
-				evs: {hp:4, atk:252, spa:252}, nature: 'Quiet'
+			'$Phanpyz': {
+				species: 'Phanpy', ability: 'Huge Power', item: 'Choice Band', gender: 'M',
+				moves: ['doubleedge', 'lightofruin', ['outrage', 'swordsdance'][this.random(2)]],
+				baseSignatureMove: 'precipiceblades', signatureMove: "Phanpy's Revenge",
+				evs: {hp:252, atk:252, def:4}, nature: 'Adamant'
 			},
 			'+Chaotic': {
 				species: 'Charizard', ability: 'Desolate Land', item: 'Choice Specs', gender: 'M',
