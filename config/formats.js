@@ -431,24 +431,26 @@ exports.Formats = [
 		},
 	},
 	{
-		name: "Monogen",
-		desc: [
-			"All Pok&eacute;mon on a team must be from the same generation.",
-			"&bullet; <a href=\"https://www.smogon.com/forums/threads/3516475/\">Monogen</a>",
-		],
+		name: "[Seasonal] Super Squad Smackdown",
+		desc: ["&bullet; <a href=\"https://www.smogon.com/forums/threads/3491902/\">Seasonal Ladder</a>"],
 		section: "OM of the Month",
-
-		ruleset: ['OU'],
-		banlist: [],
-		onValidateTeam: function (team) {
-			if (!team[0]) return;
-			var gen = this.getTemplate(team[0].species).gen;
-			if (!gen) return ["Your team must be from the same generation."];
-			for (var i = 1; i < team.length; i++) {
-				var template = this.getTemplate(team[i].species);
-				if (template.gen !== gen) return ["Your team must be from the same generation."];
-			}
+		team: 'randomHero',
+		ruleset: ['HP Percentage Mod', 'Sleep Clause Mod', 'Cancel Mod'],
+		onEffectiveness: function (typeMod, target, move, type) {
+			if (this.activePokemon && this.activePokemon.name === 'Magneto' && move.id === 'flashcannon' && type === 'Steel') return 1;
 		},
+		onSwitchInPriority: 10,
+		onSwitchIn: function (pokemon) {
+			switch (pokemon.name) {
+			case 'Iron Man':
+				pokemon.addType('Steel');
+				this.add('-start', pokemon, 'typechange', 'Fire/Steel');
+				break;
+			case 'Spiderman':
+				this.boost({atk: 1, spe: 2}, pokemon, pokemon, 'Spidey Sense');
+				break;
+			}
+		}
 	},
 	{
 		name: "CAP",
