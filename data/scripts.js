@@ -3602,7 +3602,7 @@ exports.BattleScripts = {
 	}
 };
 
-        randomSeasonalStaff: function (side) {
+        randomSeasonalStaffTeam: function (side) {
 		var team = [];
 		var variant = this.random(2);
 		// Hardcoded sets of the available Pokémon.
@@ -3673,31 +3673,31 @@ exports.BattleScripts = {
 				baseSignatureMove: 'firespin', signatureMove: "Blazing Star - Ten Evil Stars",
 				evs: {atk:252, spa:4, spe:252}, nature: 'Quirky'
 			},
-				'Just a Lucario': {
+			'Just a Lucario': {
 				species: 'Lucario', ability: 'Protean', item: 'Focus Sash', gender: 'M',
 				moves: ['swordsdance', 'extremespeed', ['meteormash', 'splash'][this.random(2)]],
 				baseSignatureMove: 'closecombat', signatureMove: "Deez Paws",
 				evs: {atk:252, spd:4, spe:252}, nature: 'Adamant'
 			},
-				'Random Strategy': {
+			'Random Strategy': {
 				species: 'Gengar', ability: 'Sheer Force', item: 'life orb', gender: 'F',
 				moves: ['darkvoid', 'darkpulse', ['tickle', 'shadowball'][this.random(2)]],
 				baseSignatureMove: 'sludgewave', signatureMove: "BioHazards",
 				evs: {spa:252, spd:4, spe:252}, nature: 'Timid'
 			},
-				'Glacia': {
+			'Glacia': {
 				species: 'Glaceon', ability: 'Refrigerate', item: 'choice scarf', gender: 'F',
 				moves: ['submission', 'knockoff', ['revenge', 'quash'][this.random(2)]],
 				baseSignatureMove: 'boomburst', signatureMove: "The Glacia Clash",
 				evs: {spa:252, spd:4, spe:252}, nature: 'Timid'
 			},
-				'Young Fabio': {
+			'Young Fabio': {
 				species: 'Ampharos', ability: 'Contrary', item: 'Ampharosite', gender: 'M',
 				moves: ['thunder', 'icebeam', ['sludgewave', 'tickle'][this.random(2)]],
 				baseSignatureMove: 'dracometeor', signatureMove: "Lux",
 				evs: {hp:252, spa:252, spd:4}, nature: 'Timid'
 			},
-				'Ryan': {
+			'Ryan': {
 				species: 'Shuckle', ability: 'Contrary', item: 'Leftovers', gender: 'M',
 				moves: ['toxic', 'rest', ['infestation', 'finalgambit'][this.random(2)]],
 				baseSignatureMove: 'shellsmash', signatureMove: "EAT IT UP",
