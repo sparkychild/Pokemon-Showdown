@@ -431,24 +431,281 @@ exports.Formats = [
 		},
 	},
 	{
-		name: "[Seasonal] Super Squad Smackdown",
-		desc: ["&bullet; <a href=\"https://www.smogon.com/forums/threads/3491902/\">Seasonal Ladder</a>"],
+		name: "[Seasonal] Super Staff Bros.",
 		section: "OM of the Month",
-		team: 'randomHero',
-		ruleset: ['HP Percentage Mod', 'Sleep Clause Mod', 'Cancel Mod'],
-		onEffectiveness: function (typeMod, target, move, type) {
-			if (this.activePokemon && this.activePokemon.name === 'Magneto' && move.id === 'flashcannon' && type === 'Steel') return 1;
+
+		team: 'randomSeasonalStaff',
+		ruleset: ['Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		onBegin: function () {
+			this.add('message', "GET READY FOR THE NEXT BATTLE!");
+			this.add("raw|Seasonal help for moves can be found <a href='https://www.smogon.com/forums/threads/3491902/page-6#post-6093168'>here</a>");
+			if (toId(this.p1.pokemon[0].name) === 'steamroll') {
+				this.add('c|@Steamroll|I wasn\'t aware we were starting. Allow me...');
+				this.p1.pokemon[0].isLead = true;
+			}
+			if (toId(this.p2.pokemon[0].name) === 'steamroll') {
+				this.add('c|@Steamroll|I wasn\'t aware we were starting. Allow me...');
+				this.p2.pokemon[0].isLead = true;
+			}
+			this.convoPlayed = false;
+
+			var globalRenamedMoves = {
+				'defog': "Defrog"
+			};
+			var customRenamedMoves = {
+				"cathy": {
+					'kingsshield': "Heavy Dosage of Fun",
+					'calmmind': "Surplus of Humour",
+					'shadowsneak': "Patent Hilarity",
+					'shadowball': "Ion Ray of Fun",
+					'shadowclaw': "Sword of Fun",
+					'flashcannon': "Fun Cannon",
+					'dragontail': "/kick",
+					'hyperbeam': "/ban"
+				}
+			};
+			var allPokemon = this.p1.pokemon.concat(this.p2.pokemon);
+
+			for (var i = 0, len = allPokemon.length; i < len; i++) {
+				var pokemon = allPokemon[i];
+				var last = pokemon.moves.length - 1;
+				if (pokemon.moves[last]) {
+					pokemon.moves[last] = toId(pokemon.set.signatureMove);
+					pokemon.moveset[last].move = pokemon.set.signatureMove;
+					pokemon.baseMoveset[last].move = pokemon.set.signatureMove;
+				}
+				for (var j = 0; j < pokemon.moveset.length; j++) {
+					var moveData = pokemon.moveset[j];
+					if (globalRenamedMoves[moveData.id]) {
+						pokemon.moves[j] = toId(pokemon.set.signatureMove);
+						moveData.move = globalRenamedMoves[moveData.id];
+						pokemon.baseMoveset[j].move = globalRenamedMoves[moveData.id];
+					}
+					if (customRenamedMoves[pokemon.name] && customRenamedMoves[pokemon.name][moveData.id]) {
+						pokemon.moves[j] = toId(pokemon.set.signatureMove);
+						moveData.move = customRenamedMoves[pokemon.name][moveData.id];
+						pokemon.baseMoveset[j].move = customRenamedMoves[pokemon.name][moveData.id];
+					}
+				}
+			}
 		},
-		onSwitchInPriority: 10,
-		onSwitchIn: function (pokemon) {
-			switch (pokemon.name) {
-			case 'Iron Man':
-				pokemon.addType('Steel');
-				this.add('-start', pokemon, 'typechange', 'Fire/Steel');
-				break;
-			case 'Spiderman':
-				this.boost({atk: 1, spe: 2}, pokemon, pokemon, 'Spidey Sense');
-				break;
+		onModifyMove: function (move, pokemon) {
+			var name = toId(pokemon.illusion && move.sourceEffect === 'allyswitch' ? pokemon.illusion.name : pokemon.name);
+			// Prevent visual glitch with Spell Steal.
+			move.effectType = 'Move';
+			// Kek
+			if (move.id === 'defog') {
+				move.name = 'Defrog';
+				this.attrLastMove('[still]');
+				this.add('-anim', pokemon, "Defog", pokemon);
+			}
+			if (move.id === 'steameruption' && name === '~Kokonoe-san') {
+				move.name = 'Koko's Statement';
+				move.sideCondition = 'steameruption';
+				move.isBounceable = false;
+				move.category = 'Special';
+				move.type = 'Water';
+				move.basePower = 110;
+				move.onTryHit = function (target, source, move) {
+					this.attrLastMove('[still]');
+					this.add('-anim', source, "Steameruption", target);
+					return null;
+				};
+			}
+			if (move.id === 'explosion' && name === '∆Wando') {
+				move.name = 'lolrip';
+				move.sideCondition = 'explosion';
+				move.isBounceable = false;
+				move.category = 'Physical';
+				move.type = 'Normal';
+				move.basePower = 300;
+				move.onTryHit = function (target, source, move) {
+					this.attrLastMove('[still]');
+					this.add('-anim', source, "Explosion", target);
+					return null;
+				};
+			}
+			if (move.id === 'knockoff' && name === '♅S♡phiе') {
+				move.name = 'Get Danked On';
+				move.sideCondition = 'knockoff';
+				move.isBounceable = false;
+				move.category = 'Physical';
+				move.type = 'Dark';
+				move.basePower = 100;
+				move.onTryHit = function (target, source, move) {
+					this.attrLastMove('[still]');
+					this.add('-anim', source, "Knockoff", target);
+					return null;
+				};
+			}
+			if (move.id === 'return' && name === '@Hanna Scope') {
+				move.name = 'The Faded Rose';
+				move.sideCondition = 'return';
+				move.isBounceable = false;
+				move.category = 'Physical';
+				move.type = 'Normal';
+				move.basePower = 120;
+				move.onTryHit = function (target, source, move) {
+					this.attrLastMove('[still]');
+					this.add('-anim', source, "Return", target);
+					return null;
+				};
+			}
+			if (move.id === 'bulletpunch' && name === '%BradderstheEpic') {
+				move.name = 'Titanium Chidori';
+				move.sideCondition = 'bulletpunch';
+				move.isBounceable = false;
+				move.category = 'Physical';
+				move.type = 'Steel';
+				move.basePower = 40;
+				move.onTryHit = function (target, source, move) {
+					this.attrLastMove('[still]');
+					this.add('-anim', source, "bulletpunch", target);
+					return null;
+				};
+			}
+			if (move.id === 'precipiceblades' && name === '%Timebleweed') {
+				move.name = 'Ancient Tremor';
+				move.sideCondition = 'precipiceblades';
+				move.isBounceable = false;
+				move.category = 'Physical';
+				move.type = 'Ground';
+				move.basePower = 120;
+				move.onTryHit = function (target, source, move) {
+					this.attrLastMove('[still]');
+					this.add('-anim', source, "precipiceblades", target);
+					return null;
+				};
+			}
+			if (move.id === 'vcreate' && name === '$Omega Onkey') {
+				move.name = 'V-Generate';
+				move.sideCondition = 'vcreate';
+				move.isBounceable = false;
+				move.category = 'Physical';
+				move.type = 'Fire';
+				move.basePower = 180;
+				move.onTryHit = function (target, source, move) {
+					this.attrLastMove('[still]');
+					this.add('-anim', source, "Vcreate", target);
+					return null;
+				};
+			}
+			if (move.id === 'precipiceblades' && name === '$Phanpyz') {
+				move.name = 'Phanpy's Revenge';
+				move.sideCondition = 'precipiceblades';
+				move.isBounceable = false;
+				move.category = 'Physical';
+				move.type = 'Ground';
+				move.basePower = 120;
+				move.onTryHit = function (target, source, move) {
+					this.attrLastMove('[still]');
+					this.add('-anim', source, "precipiceblades", target);
+					return null;
+				};
+			}
+			if (move.id === 'ominouswind' && name === '+Chaotic') {
+				move.name = 'Chaotic Winds';
+				move.sideCondition = 'ominouswind';
+				move.isBounceable = false;
+				move.category = 'Special';
+				move.type = 'Ghost';
+				move.basePower = 80;
+				move.onTryHit = function (target, source, move) {
+					this.attrLastMove('[still]');
+					this.add('-anim', source, "ominouswind", target);
+					return null;
+				};
+			}
+			if (move.id === 'bravebird' && name === '+Alterbald') {
+				move.name = 'RavenClaw';
+				move.sideCondition = 'bravebird';
+				move.isBounceable = false;
+				move.category = 'Physical';
+				move.type = 'Flying';
+				move.basePower = 120;
+				move.onTryHit = function (target, source, move) {
+					this.attrLastMove('[still]');
+					this.add('-anim', source, "bravebird", target);
+					return null;
+				};
+			}
+			if (move.id === 'firespin' && name === '+Unity Seth') {
+				move.name = 'Blazing Star - Ten Evil Stars';
+				move.sideCondition = 'firespin';
+				move.isBounceable = false;
+				move.category = 'Special';
+				move.type = 'Fire';
+				move.basePower = 50;
+				move.onTryHit = function (target, source, move) {
+					this.attrLastMove('[still]');
+					this.add('-anim', source, "firespin", target);
+					return null;
+				};
+			}
+			if (move.id === 'closecombat' && name === 'Just a Lucario') {
+				move.name = 'Deez Paws';
+				move.sideCondition = 'closecombat';
+				move.isBounceable = false;
+				move.category = 'Physical';
+				move.type = 'Fighting';
+				move.basePower = 120;
+				move.onTryHit = function (target, source, move) {
+					this.attrLastMove('[still]');
+					this.add('-anim', source, "closecombat", target);
+					return null;
+				};
+			}
+			if (move.id === 'sludgewave' && name === 'Random Strategy') {
+				move.name = 'BioHazards';
+				move.sideCondition = 'sludgewave';
+				move.isBounceable = false;
+				move.category = 'Special';
+				move.type = 'Poison';
+				move.basePower = 95;
+				move.onTryHit = function (target, source, move) {
+					this.attrLastMove('[still]');
+					this.add('-anim', source, "sludgewave", target);
+					return null;
+				};
+			}
+			if (move.id === 'boomburst' && name === 'Glacia') {
+				move.name = 'The Glacia Clash';
+				move.sideCondition = 'boomburst';
+				move.isBounceable = false;
+				move.category = 'Special';
+				move.type = 'Normal';
+				move.basePower = 140;
+				move.onTryHit = function (target, source, move) {
+					this.attrLastMove('[still]');
+					this.add('-anim', source, "boomburst", target);
+					return null;
+				};
+			}
+			if (move.id === 'dracometeor' && name === 'Young Fabio') {
+				move.name = 'Lux';
+				move.sideCondition = 'dracometeor';
+				move.isBounceable = false;
+				move.category = 'Special';
+				move.type = 'Dragon';
+				move.basePower = 120;
+				move.onTryHit = function (target, source, move) {
+					this.attrLastMove('[still]');
+					this.add('-anim', source, "dracometeor", target);
+					return null;
+				};
+			}
+			if (move.id === 'shellsmash' && name === 'Ryan') {
+				move.name = 'EAT IT UP';
+				move.sideCondition = 'shellsmash';
+				move.isBounceable = false;
+				move.category = 'Special';
+				move.type = 'bug';
+				move.basePower = 1;
+				move.onTryHit = function (target, source, move) {
+					this.attrLastMove('[still]');
+					this.add('-anim', source, "shellsmash", target);
+					return null;
+				};
 			}
 		}
 	},
