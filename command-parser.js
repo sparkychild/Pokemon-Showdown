@@ -158,6 +158,12 @@ function canTalk(user, room, connection, message, targetUser) {
 			user.lastMessage = message;
 			user.lastMessageTime = Date.now();
 		}
+				if (Config.chatfilter) {
+			return Config.chatfilter.call(this, message, user, room, connection, targetUser);
+		}
+		return message;
+	}
+	
                 if (!user.can('bypassall') && Rooms('spam')) {
  			var serverexceptions = {'lumen': 1, 'showdown': 1, 'smogtours': 1};
 			if (Config.serverexceptions) {
@@ -184,18 +190,9 @@ function canTalk(user, room, connection, message, targetUser) {
  		}
   		return message;
   	}
-  
-
-	
-		if (Config.chatfilter) {
-			return Config.chatfilter.call(this, message, user, room, connection, targetUser);
-		}
-		return message;
-	}
 
 	return true;
 }
-};
 
 var Context = exports.Context = (function () {
 	function Context(options) {
