@@ -3602,7 +3602,7 @@ exports.BattleScripts = {
 	}
 };
 
-        randomSeasonalStaffTeam: function (side) {
+        randomSeasonalStaff: function (side) {
 		var team = [];
 		var variant = this.random(2);
 		// Hardcoded sets of the available Pokémon.
