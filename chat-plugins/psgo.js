@@ -240,8 +240,8 @@ exports.commands = {
 	showcase: function (target, room, user) {
 		if (!this.canBroadcast()) return;
 
-		var page = 1;
-		var userid = user.userid;
+		let page = 1;
+		let userid = user.userid;
 		const parts = target.split(',');
 		if (parts.length === 2) {
 			userid = toId(parts[0]);
