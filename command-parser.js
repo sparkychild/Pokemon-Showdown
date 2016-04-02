@@ -171,14 +171,11 @@ class CommandContext {
 		return true;
 	}
 	canBroadcast(checkOnly, suppressMessage) {
-		let message = this.canTalk(this.message);
-		if (!message) return false;
-		let normalized = message.toLowerCase().replace(/[^a-z0-9\s!,]/g, '');
-
+		let normalized = this.message.toLowerCase().replace(/[^a-z0-9\s!,]/g, '');
 		if (!this.broadcasting && this.cmdToken === BROADCAST_TOKEN) {
 			if (!this.user.can('broadcast', null, this.room)) {
 				this.errorReply("You need to be voiced to broadcast this command's information.");
-				this.errorReply("To see it for yourself, use: /" + message.substr(1));
+				this.errorReply("To see it for yourself, use: /" + this.message.substr(1));
 				return false;
 			}
 
@@ -191,6 +188,8 @@ class CommandContext {
 			this.broadcasting = true;
 		}
 		if (this.broadcasting && !checkOnly) {
+			let message = this.canTalk(this.message);
+			if (!message) return false;
 			this.add('|c|' + this.user.getIdentity(this.room.id) + '|' + (suppressMessage || message));
 			this.room.lastBroadcast = normalized;
 			this.room.lastBroadcastTime = Date.now();
